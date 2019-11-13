@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="noticeMapper">
+ 	
+ 	
+ 	<select id = "noticeList" resultType="com.jh.s4.model.BoardNoticeVO" parameterType="com.jh.s4.util.Pager">
+  	
+  			<!-- list에 num변수가 없기 때문에 vo에 담아서 list에 넣어줌  -->
+			 <!-- NoticeVO는 boardVO 타입 -->
+			
+  			select* from 
+				(select N.*,rownum R from 
+					(select * from notice 
+					<choose>
+						<when test="kind == 'kt'">
+							where title like '%'||#{search}||'%' <!-- 연결연산자||-->
+						</when>
+						<otherwise>
+							where contents like '%'||#{search}||'%'
+						</otherwise>
+					</choose>
+					order by num desc) N)
+			where R between #{startRow} and #{lastRow}
+  	
+  	</select>
+  
+ 
+ 
+ 
+ 
+ 
+ </mapper>
