@@ -6,6 +6,22 @@
   
  <mapper namespace="noticeMapper">
  	
+ 	<select id="noticeCount" resultType="java.lang.Integer" parameterType="com.jh.s4.util.Pager">
+  		select count(num)from notice
+  		<choose>
+  			<when test="kind =='kt'">
+  					where title like '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  					where contents like'%'||#{search}||'%'
+  			</otherwise>
+  		
+  		</choose>
+  	
+  	</select>
+  	
+ 	
+ 	
  	
  	<select id = "noticeList" resultType="com.jh.s4.model.BoardNoticeVO" parameterType="com.jh.s4.util.Pager">
   	

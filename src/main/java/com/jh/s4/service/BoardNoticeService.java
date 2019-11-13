@@ -1,27 +1,28 @@
-package com.jh.s4.dao;
+package com.jh.s4.service;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
 
+import org.springframework.stereotype.Service;
+
+
+import com.jh.s4.dao.BoardNoticeDAO;
 import com.jh.s4.model.BoardVO;
 import com.jh.s4.util.Pager;
 
-@Repository
-public class BoardNoticeDAO implements BoardDAO{
-	
+@Service
+public class BoardNoticeService implements BoardService {
 	@Inject
-	private SqlSession sqlSession;
-	private final static String NAMESPACE="noticeMapeer.";
+	private BoardNoticeDAO boardNoticeDAO;
+	
 	
 	@Override
-	public List<BoardVO> boardList(Pager pager) throws Exception {\
-		pager.makeRow();
-		pager.makePager(totalCount);
-		return sqlSession.selectList(NAMESPACE+"boardList", pager);
+	public List<BoardVO> boardList(Pager pager) throws Exception {
+		
+		/* null 주의 */
+		return boardNoticeDAO.boardList(pager); 
 	}
 
 	@Override
@@ -46,12 +47,6 @@ public class BoardNoticeDAO implements BoardDAO{
 	public int boardDelete(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public int boardCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(, parameter);
 	}
 
 }
