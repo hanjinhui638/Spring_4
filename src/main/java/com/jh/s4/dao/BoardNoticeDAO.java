@@ -15,13 +15,12 @@ public class BoardNoticeDAO implements BoardDAO{
 	
 	@Inject
 	private SqlSession sqlSession;
-	private final static String NAMESPACE="noticeMapeer.";
+	private final static String NAMESPACE="noticeMapper.";
 	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {
-		pager.makeRow();
-		/*pager.makePager();*/
-		return sqlSession.selectList(NAMESPACE+"noticeList", pager); /*boardList*/
+		
+		return sqlSession.selectList(NAMESPACE+"boardList", pager); 
 	}
 
 	@Override
@@ -50,8 +49,8 @@ public class BoardNoticeDAO implements BoardDAO{
 
 	@Override
 	public int boardCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"noticeCount", pager);
+		
+		return sqlSession.selectOne(NAMESPACE+"boardCount", pager);
 	}
 
 }

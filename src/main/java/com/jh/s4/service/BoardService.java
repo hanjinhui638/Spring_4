@@ -15,6 +15,7 @@ public interface BoardService {
 	
 	//write
 	public int boardWrite(BoardVO boardVO)throws Exception;
+	
 	//update
 	public int boardUpdate(BoardVO boardVO)throws Exception;
 	

@@ -19,8 +19,8 @@ public class BoardQnaDAO implements BoardDAO {
 	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"", pager);
+		
+		return sqlSession.selectList(NAMESPACE+"boardList", pager);
 	}
 
 	@Override
@@ -49,8 +49,7 @@ public class BoardQnaDAO implements BoardDAO {
 
 	@Override
 	public int boardCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(NAMESPACE+"boardCount", pager);
 	}
 
 }

@@ -4,27 +4,23 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-
 import org.springframework.stereotype.Service;
 
-
-import com.jh.s4.dao.BoardNoticeDAO;
+import com.jh.s4.dao.BoardQnaDAO;
 import com.jh.s4.model.BoardVO;
 import com.jh.s4.util.Pager;
 
 @Service
-public class BoardNoticeService implements BoardService {
+public class BoardQnaService implements BoardService {
 	
 	@Inject
-	private BoardNoticeDAO boardNoticeDAO;
-	
-	/* return null 주의 */
+	private BoardQnaDAO boardQnaDAO;
 	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {
 		pager.makeRow();
-		pager.makePager(boardNoticeDAO.boardCount(pager));
-		return boardNoticeDAO.boardList(pager); 
+		pager.makePager(boardQnaDAO.boardCount(pager));
+		return boardQnaDAO.boardList(pager);
 	}
 
 	@Override
