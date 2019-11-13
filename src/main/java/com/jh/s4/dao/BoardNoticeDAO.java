@@ -21,7 +21,7 @@ public class BoardNoticeDAO implements BoardDAO{
 	public List<BoardVO> boardList(Pager pager) throws Exception {\
 		pager.makeRow();
 		pager.makePager(totalCount);
-		return sqlSession.selectList(NAMESPACE+"boardList", pager);
+		return sqlSession.selectList(NAMESPACE+"noticeList", pager); /*boardList*/
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class BoardNoticeDAO implements BoardDAO{
 	@Override
 	public int boardCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(, parameter);
+		return sqlSession.selectOne(NAMESPACE+"noticeCount", pager);
 	}
 
 }
