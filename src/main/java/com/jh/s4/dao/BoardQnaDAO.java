@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.jh.s4.model.BoardQnaVO;
 import com.jh.s4.model.BoardVO;
 import com.jh.s4.util.Pager;
 
@@ -17,6 +18,12 @@ public class BoardQnaDAO implements BoardDAO {
 	private SqlSession sqlSession;
 	private final static String NAMESPACE = "qnaMapper.";
 	
+	public int boardReplyUpdate(BoardQnaVO boardQnAVO)throws Exception{
+			return sqlSession.update(NAMESPACE+"boardReplyUpdate", boardQnAVO);
+	}
+	
+	
+	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {
 		
@@ -25,8 +32,8 @@ public class BoardQnaDAO implements BoardDAO {
 
 	@Override
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectOne(NAMESPACE+"boardSelect", boardVO);
 	}
 
 	@Override

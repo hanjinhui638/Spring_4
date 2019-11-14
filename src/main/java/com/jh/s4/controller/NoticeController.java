@@ -23,17 +23,17 @@ public class NoticeController {
 	
 	//Select
 	
-	@RequestMapping("noticeSelect")
+	@RequestMapping(value = "noticeSelect", method = RequestMethod.GET)
 	public ModelAndView boardSelect(BoardVO boardVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		boardVO = boardNoticeService.boardSelect(boardVO);
 		
 			if(boardVO == null) {
 				mv.addObject("msg", "fail");
-				mv.addObject("path", "noticeList");
+				mv.addObject("path", "./noticeList");
 				mv.setViewName("common/common_result");
 			}else {
-				mv.addObject("noticeVO", boardVO);
+				mv.addObject("boardVO", boardVO);
 				mv.addObject("board", "notice");
 				mv.setViewName("notice/noticeSelect");
 			}

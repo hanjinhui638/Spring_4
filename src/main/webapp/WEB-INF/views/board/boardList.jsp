@@ -46,7 +46,7 @@
 				</tr>
 			</thead>
 			<tbody>
-					<!-- 자동으로 자식타입으로 형변환 -->
+				<!-- 자동으로 자식타입으로 형변환 -->
 				<c:forEach items="${list}" var = "dto" varStatus="st"> 
 					
 				<tr>
@@ -57,7 +57,7 @@
 					<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
 					</c:catch>
 					<%-- </c:if> --%>
-					<a href = "./${board}Select?num=${dto.num}">${dto.title}</a>
+					<a href = "./${board}Select?num= ${dto.num}"> ${dto.title}</a>
 					</td>
 					<td>${dto.writer}</td>
 					<td>${dto.reg_date}</td>
@@ -91,7 +91,7 @@
 				</c:forEach>		
 			</div> --%>
 			<%-- <c:if test="${empty sessionScope.member}"> --%>
-				<a href = "./${board}Write" >Write</a>
+				<a href = "./${board}Write"> Write</a>
 		<%-- 	</c:if> --%>
 		
 	</div>

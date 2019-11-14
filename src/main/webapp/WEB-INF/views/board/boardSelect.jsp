@@ -14,15 +14,15 @@
 <div class="container">
   <h2>Notice Select Page</h2>
   <ul class="list-group">
-    <li class="list-group-item">Title : ${noticeVO.title} </li>
-    <li class="list-group-item">Writer : ${noticeVO.writer} </li>
-    <li class="list-group-item">DATE : ${noticeVO.reg_date}</li>
-    <li class="list-group-item">HIT : ${noticeVO.hit} </li>
+    <li class="list-group-item">Title : ${boardVO.title} </li>
+    <li class="list-group-item">Writer : ${boardVO.writer} </li>
+    <li class="list-group-item">DATE : ${boardVO.reg_date}</li>
+    <li class="list-group-item">HIT : ${boardVO.hit} </li>
   </ul>
-   <p>CONTENTS: ${noticeDTO.contents} </p>
+   <p>CONTENTS: ${boardVO.contents} </p>
 	<div id="box">
-		<a class = "btn btn-primary" href="./noticeUpdate?num=${noticeVO.num}">Update</a>
- 		<a class = "btn btn-danger" href="./noticeDelete?num=${noticeVO.num}">Delete</a>
+		<a class = "btn btn-primary" href="./noticeUpdate?num=${boardVO.num}">Update</a>
+ 		<a class = "btn btn-danger" href="./noticeDelete?num=${boardVO.num}">Delete</a>
 		
 	
 	<%-- <%if(memberDTO !=null && memberDTO.getId().equals(noticeDTO.getWriter())) {%>
