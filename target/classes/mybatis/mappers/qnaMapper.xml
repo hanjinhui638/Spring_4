@@ -5,6 +5,13 @@
   
   <mapper namespace="qnaMapper">
   
+	<!-- write   -->
+  	<insert id="boardWrite" parameterType="com.jh.s4.model.BoardQnaVO" >
+  		insert into qna
+  		values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, board_seq.currval, 0, 0)
+  	</insert>
+  
+  
   	<!-- Count -->
   	<select id = "boardCount" resultType="java.lang.Integer" parameterType="com.jh.s4.util.Pager">
 		select count(num) from qna

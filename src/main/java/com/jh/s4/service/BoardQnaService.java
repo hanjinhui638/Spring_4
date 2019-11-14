@@ -31,8 +31,8 @@ public class BoardQnaService implements BoardService {
 
 	@Override
 	public int boardWrite(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	
+		return boardQnaDAO.boardWrite(boardVO);
 	}
 
 	@Override

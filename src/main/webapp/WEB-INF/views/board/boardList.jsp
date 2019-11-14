@@ -25,6 +25,7 @@
 				<select name = "kind">
 				
 					<option id = "kt" value = "kt">Title</option>
+					<option id = "kw" value = "kw">Writer</option>
 					<option id = "kc" value = "kc">Contents</option>
 							
 				</select>
@@ -50,7 +51,13 @@
 					
 				<tr>
 					<td>${dto.num}</td>
-					<td><a href = "./${board}Select?num=${dto.num}">${dto.title}</a></td>
+					<td>
+					<%-- <c:if test="${board ne notice}"> --%>
+					<c:catch>
+					<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
+					</c:catch>
+					<%-- </c:if> --%>
+					<a href = "./${board}Select?num=${dto.num}">${dto.title}</a></td>
 					<td>${dto.writer}</td>
 					<td>${dto.reg_date}</td>
 					<td>${dto.hit}</td>

@@ -20,8 +20,36 @@ import com.jh.s4.util.Pager;
 @RequestMapping("/qna/**")
 public class QnaController {
 	
+	
 	@Inject
 	private BoardQnaService boardQnaService;
+	
+	
+	@RequestMapping(value = "qnaWrite", method = RequestMethod.GET)
+	public ModelAndView qnaWrite()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("board", "qna");
+		mv.setViewName("board/boardWrite");
+		return mv;
+		
+	}
+	
+	@RequestMapping(value = "qnaWrite", method = RequestMethod.POST)
+	public ModelAndView qnaWrite(BoardQnaVO boardQnaVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardQnaService.boardWrite(boardQnaVO);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:./qnaList");
+		}else {
+			mv.addObject("msg", "Fail");
+			mv.addObject("path", "./qnaList");
+			mv.setViewName("common/common_result");
+		}	
+		
+		return mv;
+	}
+	
 	
 	@RequestMapping(value = "qnaList", method = RequestMethod.GET)
 	public ModelAndView qnaList(Pager pager) throws Exception{
