@@ -21,8 +21,10 @@
   </ul>
    <p>CONTENTS: ${dto.contents} </p>
 	<div id="box">
-		<a class = "btn btn-primary" href="./noticeUpdate?num=${dto.num}">Update</a>
- 		<a class = "btn btn-danger" href="./noticeDelete?num=${dto.num}">Delete</a>
+		<a class = "btn btn-danger" href="${board}List?num=${dto.num}">List</a>
+		<a class = "btn btn-primary" href="${board}Update?num=${dto.num}">Update</a>
+ 		<a class = "btn btn-danger" href="${board}Delete?num=${dto.num}">Delete</a>
+ 		<a class = "btn btn-primary" href="${board}Reply?num=${dto.num}">Reply</a>
 		
 	
 	<%-- <%if(memberDTO !=null && memberDTO.getId().equals(noticeDTO.getWriter())) {%>

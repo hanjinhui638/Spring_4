@@ -12,7 +12,7 @@
 <c:import url="../layout/nav.jsp"/>
 <div class="container">
   <h2>Update Insert Page</h2>
-  <form action="./noticeUpdate.notice" method="post">
+  <form action="${board}Update" method="post">
     <div class="form-group">
       <input type="hidden" name="num" value = "${dto.num}">
     </div>

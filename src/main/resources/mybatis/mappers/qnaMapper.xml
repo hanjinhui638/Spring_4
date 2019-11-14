@@ -5,10 +5,30 @@
   
   <mapper namespace="qnaMapper">
   	
+  	<!-- delete -->
+  	<delete id="boardDelete" parameterType="BoardVO">
+  		delete qna where num = #{num}
+  	</delete>
+  	
+  	<!-- update -->
+  	<update id="boardUpdate" parameterType="BoardVO">
+  		update qna set title = #{title}, contents=#{contents} where num = #{num}
+  	
+  	</update>	
+  	
+	<!-- write   -->
+  	<insert id="boardWrite" parameterType="BoardVO" >
+  		insert into qna
+  		values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, board_seq.currval, 0, 0)
+  	</insert>
+  
+  
+  
   	<insert id = "boardReply" parameterType="QnaVO">
   		insert into qna values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, #{ref}, #{step}, #{depth})
   	
   	</insert>
+  
   
   
   	<update id="boardReplyUpdate" parameterType="QnaVO">
@@ -17,18 +37,9 @@
   	
   	</update>
   	
-  	<!-- delete -->
-  	<delete id="boardDelete" parameterType="BoardVO">
-  		delete qna where num = #{num}
-  	</delete>
-  	
-  	
-  	<!-- update -->
-  	<update id="boardUpdate" parameterType="BoardVO">
-  		update qna title = #{title}, contents=#{contents} where num = #{num}
-  	
-  	</update>	
   
+  	
+  	
   	<!-- Select -->
   	<select id="boardSelect" parameterType="QnaVO" resultType="QnaVO">
   		select * from qna where num = #{num}
@@ -36,11 +47,6 @@
   	</select>
   
   
-	<!-- write   -->
-  	<insert id="boardWrite" parameterType="BoardVO" >
-  		insert into qna
-  		values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, board_seq.currval, 0, 0)
-  	</insert>
   
   
   	<!-- Count -->

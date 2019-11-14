@@ -23,9 +23,9 @@ public class DataSourceTest extends TestAbstractCase{
 	}
 	
 	
-	//@Test
+	@Test
 	public void dataSorcetest() throws Exception{
-		assertNotNull(dataSource);
+		assertNotNull(dataSource.getConnection());
 	}
 
 }

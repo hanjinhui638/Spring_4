@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.jh.s4.model.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -29,7 +31,7 @@
 					<option id = "kc" value = "kc">Contents</option>
 							
 				</select>
-					<input type="text" name ="search" value = "${rowMaker.search}">
+					<input type="text" name ="search" value = "${pager.search}">
 					<button>검색</button>			
 			</form>
 		</div>
@@ -47,7 +49,7 @@
 			</thead>
 			<tbody>
 				<!-- 자동으로 자식타입으로 형변환 -->
-				<c:forEach items="${list}" var = "dto" varStatus="st"> 
+				<c:forEach items="${list}" var = "dto" > 
 					
 				<tr>
 					<td>${dto.num}</td>
@@ -57,7 +59,7 @@
 					<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
 					</c:catch>
 					<%-- </c:if> --%>
-					<a href = "./${board}Select?num= ${dto.num}"> ${dto.title}</a>
+					<a href = "${board}Select?num= ${dto.num}"> ${dto.title}</a>
 					</td>
 					<td>${dto.writer}</td>
 					<td>${dto.reg_date}</td>
@@ -96,7 +98,7 @@
 		
 	</div>
 	<script type="text/javascript">
-		var kind = '${rowMaker.kind}';
+		var kind = '${pager.kind}';
 		if(kind ==''){
 			kind = "kt";
 			

@@ -14,7 +14,7 @@
  	</update>
  	
  	
- 	<select id="boardSelect" resultType="NoticeVO" parameterType="BoardVO">
+ 	<select id="boardSelect" resultType="NoticeVO" parameterType="NoticeVO">
 		select * from notice where num = #{num}
  	</select>
 

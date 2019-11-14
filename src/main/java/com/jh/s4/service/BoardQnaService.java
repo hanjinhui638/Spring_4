@@ -18,12 +18,11 @@ public class BoardQnaService implements BoardService {
 	private BoardQnaDAO boardQnaDAO;
 	
 	public int boardReply(BoardVO boardVO) throws Exception {
-		/*
-		 * BoardVO p = boardQnaDAO.boardSelect(boardVO); 
-		 * BoardQnaVO parent=(BoardQnaVO)p;
-		 */
 		
-		BoardQnaVO parent = (BoardQnaVO)boardQnaDAO.boardSelect(boardVO);
+		  BoardVO p = boardQnaDAO.boardSelect(boardVO); 
+		  BoardQnaVO parent=(BoardQnaVO)p;
+		 
+		/* BoardQnaVO parent = (BoardQnaVO)boardQnaDAO.boardSelect(boardVO); */
 		int result = boardQnaDAO.boardReplyUpdate(parent);
 		/* BoardQnaVO child = (BoardQnaVO)boardVO;  - > controller에서 boardVO로 만들어서 넘겼기 때문에 안됨*/
 		
@@ -43,6 +42,7 @@ public class BoardQnaService implements BoardService {
 		
 		return boardQnaDAO.boardReply(parent);
 	}
+	
 	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {

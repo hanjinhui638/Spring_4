@@ -10,13 +10,14 @@
 </head>
 <body>
 <c:import url="../layout/nav.jsp"/>
-	<h1>${board} Write Form</h1>
+	<h1>Write Form</h1>
 	
 	<div class="container">
   <h2>${board}Write</h2>
-  <form action="${board}Write" method="post">
+  <form action="${board}Reply" method="post">
     <div class="form-group">
       <label for="title">TITLE:</label>
+      <input type="hidden" name="num" value="${dto.num}">
       <input type="text" class="form-control" id="title" placeholder="Enter title" name="title"> <!-- name은 parameter DBcloumn과 동일하게 -->
     </div>
     

@@ -25,23 +25,40 @@ public class BoardNoticeDAOTest extends TestAbstractCase{
 		assertEquals(1, result);
 	}
 	
+	
 	//@Test
-	public void boardSelectTest()throws Exception{
+	public void boardSelectTest() throws Exception {
 		BoardVO boardVO = new BoardVO();
+		boardVO.setNum(2);
+		boardVO = boardNoticeDAO.boardSelect(boardVO);
 		
+		assertNotNull(boardVO);
 	}
 	
-	@Test
+	
+	
+	
+	//@Test
 	public void noticeUpdate()throws Exception{
 		BoardVO boardVO = new BoardVO();
 		
 		boardVO.setTitle("a1");
 		boardVO.setContents("aa");
-		boardVO.setNum(133);
+		boardVO.setNum(2);
 		
 		int result = boardNoticeDAO.boardUpdate(boardVO);
 		assertEquals(1, result);
 		
+	}
+	
+
+	@Test
+	public void boardDeleteTest() throws Exception {
+		BoardVO boardVO = new BoardVO();
+		boardVO.setNum(3);	
+		int result = boardNoticeDAO.boardDelete(boardVO);
+		
+		assertEquals(1, result);
 	}
 	
 
