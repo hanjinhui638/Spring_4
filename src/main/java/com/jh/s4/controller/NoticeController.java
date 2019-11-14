@@ -25,6 +25,7 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
+		mv.addObject("board", "notice");
 		mv.setViewName("board/boardList");
 		return mv;
 	}

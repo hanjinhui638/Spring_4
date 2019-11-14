@@ -16,9 +16,11 @@
 	
 	
 	<div class="container">
-		<h2>Board LIST</h2>
+		
+		<h2>${board} LIST</h2>
+		
 		<div>
-			<form id = "frm" action="./noticeList">
+			<form id = "frm" action="./${board}List">
 				<input type="hidden" id="curPage" value = "1" name ="curPage">
 				<select name = "kind">
 				
@@ -43,11 +45,12 @@
 				</tr>
 			</thead>
 			<tbody>
+					<!-- 자동으로 자식타입으로 형변환 -->
 				<c:forEach items="${list}" var = "dto" varStatus="st"> 
 					
 				<tr>
 					<td>${dto.num}</td>
-					<td><a href = "./noticeSelect?num=${dto.num}">${dto.title}</a></td>
+					<td><a href = "./${board}Select?num=${dto.num}">${dto.title}</a></td>
 					<td>${dto.writer}</td>
 					<td>${dto.reg_date}</td>
 					<td>${dto.hit}</td>
@@ -80,7 +83,7 @@
 				</c:forEach>		
 			</div> --%>
 			<%-- <c:if test="${empty sessionScope.member}"> --%>
-				<a href = "./noticeWrite" >Write</a>
+				<a href = "./${board}Write" >Write</a>
 		<%-- 	</c:if> --%>
 		
 	</div>

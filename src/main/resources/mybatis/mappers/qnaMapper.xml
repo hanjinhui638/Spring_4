@@ -16,7 +16,7 @@
 					where writer like '%'||#{search}||'%'
 				</when>
 				<otherwise>
-					where contents like '%'||#{search}||'%'
+					where contents like '%'||#{search}||'%' 
 				</otherwise>
 			</choose>  		
   	</select>
@@ -37,7 +37,7 @@
  						where contents like '%'||#{search}||'%'
  					</otherwise>
  				</choose>
- 			order by num desc) Q)
+ 			order by ref desc, step asc) Q)
   		where R between #{startRow} and #{lastRow}
  	 </select>
   
