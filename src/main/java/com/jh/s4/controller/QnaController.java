@@ -35,9 +35,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "qnaWrite", method = RequestMethod.POST)
-	public ModelAndView qnaWrite(BoardQnaVO boardQnaVO)throws Exception{
+	public ModelAndView qnaWrite(BoardVO boardVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = boardQnaService.boardWrite(boardQnaVO);
+		int result = boardQnaService.boardWrite(boardVO);
 		
 		if(result > 0) {
 			mv.setViewName("redirect:./qnaList");

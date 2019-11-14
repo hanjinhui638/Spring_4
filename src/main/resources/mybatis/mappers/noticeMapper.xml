@@ -4,16 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
   
  <mapper namespace="noticeMapper">
- 
+ 	
+ 	<select id="boardSelect" resultType="NoticeVO" parameterType="BoardVO">
+		select * from notice where num = #{num}
+ 	</select>
+
  	<!-- write -->
- 	<insert id="boardWrite" parameterType="com.jh.s4.model.BoardVO">
+ 	<insert id="boardWrite" parameterType="BoardVO">
  		insert into notice
  		values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate,0)
  	</insert>
  	
  	
  	<!-- count -->
- 	<select id="boardCount" resultType="java.lang.Integer" parameterType="com.jh.s4.util.Pager">
+ 	<select id="boardCount" resultType="java.lang.Integer" parameterType="Pager">
   		select count(num) from notice
   			<choose>
   				<when test="kind =='kt'">
@@ -29,7 +33,7 @@
   	</select>
   	
   	<!-- List -->
- 	<select id = "boardList" resultType="com.jh.s4.model.BoardNoticeVO" parameterType="com.jh.s4.util.Pager">
+ 	<select id = "boardList" resultType="NoticeVO" parameterType="Pager">
   	<!-- list에 num변수가 없기 때문에 vo에 담아서 list에 넣어줌  -->
 	<!-- NoticeVO는 boardVO 타입 -->
 			select* from 

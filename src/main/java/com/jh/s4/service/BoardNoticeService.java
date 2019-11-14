@@ -29,8 +29,7 @@ public class BoardNoticeService implements BoardService {
 
 	@Override
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return boardNoticeDAO.boardSelect(boardVO);
 	}
 
 	@Override

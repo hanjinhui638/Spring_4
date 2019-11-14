@@ -14,7 +14,7 @@ public class BoardNoticeDAOTest extends TestAbstractCase{
 	@Inject
 	private BoardNoticeDAO boardNoticeDAO;
 	
-	@Test
+	//@Test
 	public void boardWriteTest() throws Exception{
 		BoardVO boardVO = new BoardVO();
 		boardVO.setTitle("test title");
@@ -22,6 +22,13 @@ public class BoardNoticeDAOTest extends TestAbstractCase{
 		boardVO.setWriter("test writer");
 		int result = boardNoticeDAO.boardWrite(boardVO);
 		assertEquals(1, result);
+	}
+	
+	@Test
+	public void boardSelectTest()throws Exception{
+		BoardVO boardVO = new BoardVO();
+		int result =  boardNoticeDAO.boardSelect(boardVO);
+		
 	}
 	
 

@@ -25,8 +25,8 @@ public class BoardNoticeDAO implements BoardDAO{
 
 	@Override
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return sqlSession.selectOne(NAMESPACE+"boardSelect", boardVO);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class BoardNoticeDAO implements BoardDAO{
 
 	@Override
 	public int boardUpdate(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
