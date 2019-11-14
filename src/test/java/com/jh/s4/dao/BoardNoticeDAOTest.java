@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.jh.s4.TestAbstractCase;
+import com.jh.s4.model.BoardNoticeVO;
 import com.jh.s4.model.BoardVO;
 
 public class BoardNoticeDAOTest extends TestAbstractCase{
@@ -24,10 +25,22 @@ public class BoardNoticeDAOTest extends TestAbstractCase{
 		assertEquals(1, result);
 	}
 	
-	@Test
+	//@Test
 	public void boardSelectTest()throws Exception{
 		BoardVO boardVO = new BoardVO();
-		int result =  boardNoticeDAO.boardSelect(boardVO);
+		
+	}
+	
+	@Test
+	public void noticeUpdate()throws Exception{
+		BoardVO boardVO = new BoardVO();
+		
+		boardVO.setTitle("a1");
+		boardVO.setContents("aa");
+		boardVO.setNum(133);
+		
+		int result = boardNoticeDAO.boardUpdate(boardVO);
+		assertEquals(1, result);
 		
 	}
 	
