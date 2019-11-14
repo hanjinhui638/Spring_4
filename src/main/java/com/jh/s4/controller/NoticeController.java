@@ -21,6 +21,60 @@ public class NoticeController {
 	private BoardNoticeService boardNoticeService;
 	
 	
+	@RequestMapping(value = "noticeDelete")
+	public ModelAndView boardDelete(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardNoticeService.boardDelete(boardVO);
+		String msg="Fail";
+		
+		if(result>0) {
+			msg = "Success";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("path", "./noticeList");
+		mv.setViewName("common/common_result");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)
+	public ModelAndView boardUpdate(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardNoticeService.boardUpdate(boardVO);
+		
+		if(result>0) {
+			mv.setViewName("redirect:./noticeList");
+		}else {
+			mv.addObject("msg", "Update Fail");
+			mv.addObject("path", "./noticeList");
+			mv.setViewName("common/common_result");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "noticeUpdate", method = RequestMethod.GET)
+	public ModelAndView boardUpdateForm(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		boardVO = boardNoticeService.boardSelect(boardVO);
+		
+		if(boardVO != null) {
+			mv.addObject("board", "notice");
+			mv.addObject("dto", boardVO);
+			mv.setViewName("board/boardUpdate");
+		}else {
+			mv.addObject("msg", "fail");
+			mv.addObject("path", "./noticeList");
+			mv.setViewName("common/common_result");
+		}
+		
+		return mv;
+	}
+	
+	
+	
+	
 	//Select
 	
 	@RequestMapping(value = "noticeSelect", method = RequestMethod.GET)
@@ -33,9 +87,9 @@ public class NoticeController {
 				mv.addObject("path", "./noticeList");
 				mv.setViewName("common/common_result");
 			}else {
-				mv.addObject("boardVO", boardVO);
+				mv.addObject("dto", boardVO);
 				mv.addObject("board", "notice");
-				mv.setViewName("notice/noticeSelect");
+				mv.setViewName("board/boardSelect");
 			}
 			return mv;
 	}

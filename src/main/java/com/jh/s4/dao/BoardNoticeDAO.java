@@ -38,13 +38,13 @@ public class BoardNoticeDAO implements BoardDAO{
 	@Override
 	public int boardUpdate(BoardVO boardVO) throws Exception {
 
-		return 0;
+		return sqlSession.update(NAMESPACE+"boardUpdate", boardVO);
 	}
 
 	@Override
 	public int boardDelete(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(NAMESPACE+"boardDelete", boardVO);
 	}
 
 	@Override

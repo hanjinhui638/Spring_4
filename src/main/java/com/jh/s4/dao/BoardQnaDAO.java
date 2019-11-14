@@ -22,7 +22,10 @@ public class BoardQnaDAO implements BoardDAO {
 			return sqlSession.update(NAMESPACE+"boardReplyUpdate", boardQnAVO);
 	}
 	
-	
+	public int boardReply(BoardQnaVO boardQnaVO)throws Exception{
+			return sqlSession.insert(NAMESPACE+"boardReply", boardQnaVO);
+		
+	}
 	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {
@@ -43,14 +46,14 @@ public class BoardQnaDAO implements BoardDAO {
 
 	@Override
 	public int boardUpdate(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.update(NAMESPACE+"boardUpdate", boardVO);
 	}
 
 	@Override
 	public int boardDelete(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(NAMESPACE+"boardDelete", boardVO);
 	}
 
 	@Override

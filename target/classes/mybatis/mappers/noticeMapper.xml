@@ -5,6 +5,15 @@
   
  <mapper namespace="noticeMapper">
  	
+ 	<delete id="boardDelete" parameterType="BoardVO">
+ 		delete notice where num = #{num}
+ 	</delete>
+ 	
+ 	<update id="boardUpdate" parameterType="BoardVO">
+ 		update notice set title =#{title}, contents=#{contents} where num =#{num}
+ 	</update>
+ 	
+ 	
  	<select id="boardSelect" resultType="NoticeVO" parameterType="BoardVO">
 		select * from notice where num = #{num}
  	</select>

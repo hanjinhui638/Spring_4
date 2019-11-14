@@ -23,34 +23,101 @@ public class QnaController {
 	@Inject
 	private BoardQnaService boardQnaService;
 	
-	public void boardReply(BoardVO boardVO)throws Exception{
+	@RequestMapping(value = "qnaReply", method = RequestMethod.POST)
+	public ModelAndView boardReply(BoardVO boardVO)throws Exception{
+			ModelAndView mv = new ModelAndView();
+			int result = boardQnaService.boardReply(boardVO);
 			
-		
-		boardQnaService.boardSelect(boardVO);
+			if(result>0) {
+				mv.setViewName("redirect:./qnaList");
+			}else {
+				mv.addObject("msg", "Fail");
+				mv.addObject("path", "./qnaList");
+				mv.setViewName("common/common_result");
+			}
+			
+			return mv;
 	}
 	
+	@RequestMapping(value = "qnaReply", method = RequestMethod.GET)
+	public ModelAndView boardReplyForm(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("dto", boardVO);
+		mv.addObject("board", "qna");
+		mv.setViewName("board/boardReply");
+		return mv;
+	}
+	
+	@RequestMapping(value = "qnaDelete")
+	public ModelAndView boardDelete(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardQnaService.boardDelete(boardVO);
+		String msg="Fail";
+		
+		if(result>0) {
+			msg = "Success";
+		}
+		
+			mv.addObject("msg", msg);
+			mv.addObject("path", "./qnaList");
+			mv.setViewName("common/common_result");
+			return mv;
+	}
+	
+	
+	@RequestMapping(value = "qnaUpdate", method = RequestMethod.POST)
+	public ModelAndView boardUpdate(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardQnaService.boardUpdate(boardVO);
+		
+		if(result>0) {
+			mv.setViewName("redirect:./qnaList");
+		}else {
+			mv.addObject("msg", "Fail");
+			mv.addObject("path", "./qnaList");
+			mv.setViewName("common/common_result");
+		}
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "qnaUpdate", method = RequestMethod.GET)
+	public ModelAndView boardUpdateForm(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		boardVO = boardQnaService.boardSelect(boardVO);
+		
+		if(boardVO != null) {
+			mv.addObject("board", "qna");
+			mv.addObject("dto", boardVO);
+			mv.setViewName("board/boardUpdate");
+		}else {
+			mv.addObject("msg", " fail");
+			mv.addObject("path", "./qnaList");
+			mv.setViewName("common/common_result");
+		}
+		
+		return mv;
+	}
+	
+	
+	
 	//select
-	@RequestMapping(value = "qnaSelect")
+	@RequestMapping(value = "qnaSelect", method = RequestMethod.GET)
 	public ModelAndView qnaSelect(BoardVO boardVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		boardVO = boardQnaService.boardSelect(boardVO);
 		
 		
-		// if(boardVO == null){ 
-		//	 mv.addObject("msg", "fail"); 
-		//	 mv.addObject("path", "./qnaList"); 
-		//	 mv.setViewName("common/common_result"); 
-		//	 }else {
-		//		 mv.addObject("boardVO", boardVO); 
-		//		 mv.addObject("board", "qna");
-		//		 mv.setViewName("qna/qnaSelect"); 
-		// }
-		 
-		
-		  mv.addObject("boardVO", boardVO); 
-		  mv.addObject("board", "qna");
-		  mv.setViewName("qna/qnaSelect");
-		  
+		 if(boardVO == null){ 
+			 mv.addObject("msg", "fail"); 
+			 mv.addObject("path", "./qnaList"); 
+			 mv.setViewName("common/common_result"); 
+			 }else {
+				 mv.addObject("dto", boardVO); 
+				 mv.addObject("board", "qna");
+				 mv.setViewName("board/boardSelect"); 
+		 }
 		 
 		return mv;
 		

@@ -18,6 +18,11 @@ public class BoardQnaService implements BoardService {
 	private BoardQnaDAO boardQnaDAO;
 	
 	public int boardReply(BoardVO boardVO) throws Exception {
+		/*
+		 * BoardVO p = boardQnaDAO.boardSelect(boardVO); 
+		 * BoardQnaVO parent=(BoardQnaVO)p;
+		 */
+		
 		BoardQnaVO parent = (BoardQnaVO)boardQnaDAO.boardSelect(boardVO);
 		int result = boardQnaDAO.boardReplyUpdate(parent);
 		/* BoardQnaVO child = (BoardQnaVO)boardVO;  - > controller에서 boardVO로 만들어서 넘겼기 때문에 안됨*/
@@ -36,7 +41,7 @@ public class BoardQnaService implements BoardService {
 		 * child.setStep(parent.getStep()+1); child.setDepth(parent.getDepth()+1);
 		 */
 		
-		return boardQnaDAO.boardReplyUpdate(parent);
+		return boardQnaDAO.boardReply(parent);
 	}
 	
 	@Override
@@ -61,13 +66,13 @@ public class BoardQnaService implements BoardService {
 	@Override
 	public int boardUpdate(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return boardQnaDAO.boardUpdate(boardVO);
 	}
 
 	@Override
 	public int boardDelete(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return boardQnaDAO.boardDelete(boardVO);
 	}
 
 }
