@@ -15,7 +15,7 @@ public class BoardNoticeDAOTest extends TestAbstractCase{
 	@Inject
 	private BoardNoticeDAO boardNoticeDAO;
 	
-	//@Test
+	@Test
 	public void boardWriteTest() throws Exception{
 		BoardVO boardVO = new BoardVO();
 		boardVO.setTitle("test title");
@@ -26,19 +26,19 @@ public class BoardNoticeDAOTest extends TestAbstractCase{
 	}
 	
 	
-	//@Test
+	@Test
 	public void boardSelectTest() throws Exception {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setNum(2);
 		boardVO = boardNoticeDAO.boardSelect(boardVO);
 		
-		assertNotNull(boardVO);
+		assertNull(boardVO);
 	}
 	
 	
 	
 	
-	//@Test
+	@Test
 	public void noticeUpdate()throws Exception{
 		BoardVO boardVO = new BoardVO();
 		
