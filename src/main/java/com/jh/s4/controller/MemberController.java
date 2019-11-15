@@ -3,6 +3,7 @@ package com.jh.s4.controller;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,25 @@ public class MemberController {
 	@Inject
 	private MemberServiceImpl memberServiceImpl;
 	
+	@GetMapping(value = "memberCheckId")
+	public void memberCheckId(MemberVO memberVO, Model model)throws Exception{
+		memberVO = memberServiceImpl.memberCheckId(memberVO);
+		/* checkVO null: 사용가능 */
+		
+		String result = "중복된 ID";
+		if(memberVO == null){
+			//사용가능
+			result = "사용가능한 ID";
+		}//중복
+		
+		model.addAttribute("dto", memberVO);
+		model.addAttribute("result", result);
+	
+		
+	}
+	
+	
+	//Join	
 	@GetMapping(value = "memberJoin")
 	public void memberJoin()throws Exception{
 		

@@ -15,6 +15,12 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAOImpl memberDAOImpl;
 	
 	@Override
+	public MemberVO memberCheckId(MemberVO memberVO) throws Exception {
+		
+		return memberDAOImpl.memberCheckId(memberVO);
+	}
+	
+	@Override
 	public int memberJoin(MemberVO memberVO) throws Exception {
 		// TODO Auto-generated method stub
 		return memberDAOImpl.memberJoin(memberVO);

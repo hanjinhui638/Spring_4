@@ -3,6 +3,9 @@ package com.jh.s4.dao;
 import com.jh.s4.model.MemberVO;
 
 public interface MemberDAO {
+	
+		//idcheck
+		public MemberVO memberCheckId(MemberVO memberVO)throws Exception;
 
 		//join 메소드 이름 mapper의 아이디와 동일하게 
 		public int memberJoin(MemberVO memberVO)throws Exception;

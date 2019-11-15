@@ -17,6 +17,7 @@
     <div class="form-group">
       <label for="id">ID:</label>
       <input type="text" class="form-control" id="id" name ="id">
+      <input type="button" value = "중복확인">
     </div>
     <div class="form-group">
       <label for="pw">Password:</label>
