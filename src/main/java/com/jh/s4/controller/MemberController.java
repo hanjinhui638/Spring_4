@@ -1,6 +1,8 @@
 package com.jh.s4.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,33 @@ public class MemberController {
 	@Inject
 	private MemberServiceImpl memberServiceImpl;
 	
+	@GetMapping(value = "memberLogout")
+	public String memberLogout(HttpSession session)throws Exception{
+			//session.removeAttribute("member");
+			session.invalidate(); //유지시간을 0으로 변경 
+			return "redirect:../";
+	}
+	
+	//Login
+	
+	@GetMapping(value = "memberLogin")
+	public void memberLogin()throws Exception{
+			
+	}
+	
+	@PostMapping(value = "memberLogin")
+	public String memberLogin(MemberVO memberVO, HttpSession session)throws Exception{
+		memberVO = memberServiceImpl.memberLogin(memberVO);
+			
+		if(memberVO !=null){
+			session.setAttribute("member", memberVO);
+		}
+		
+		return "redirect:../";
+	}
+	
+	
+	//checkId
 	@GetMapping(value = "memberCheckId")
 	public void memberCheckId(MemberVO memberVO, Model model)throws Exception{
 		memberVO = memberServiceImpl.memberCheckId(memberVO);

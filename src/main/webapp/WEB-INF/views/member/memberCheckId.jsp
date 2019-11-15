@@ -16,15 +16,31 @@
 		
   		<div class="form-group">
    		 <label for="id">ID:</label>
-    	<input type="text" class="form-control" value="${param.id}" id="id" placeholder="id입력" name= "id"> <%-- ${dto.id} null값--%>
+    	<input type="text" class="form-control" value="${param.id}" id="id" placeholder="id입력" name = "id"> <%-- ${dto.id} null값  name= "id"--%>
  		 </div>
  	 <button type="submit" class="btn btn-default">Submit</button>
  	 <c:if test="${empty dto}">
- 	 <input type="button" value = "사용하기">
+ 	 <input type="button" id="useId" value = "사용하기">
  	 </c:if>
-</form> 
-		
+	</form> 
+	
 	</div>
+	<script type="text/javascript">
+		$("#useId").click(function() {
+			var id = $("#id").val();
+			
+			//javascript
+			//opener.document.getElementById("id").value=id;
+			
+			//jquery
+			$("#id", opener.document).val(id);
+			
+			window.self.close();
+	});
+
+
+</script>
+	
 
 </body>
 </html>
