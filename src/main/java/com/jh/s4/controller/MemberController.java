@@ -33,7 +33,7 @@ public class MemberController {
 				mv.addObject("msg", "Fail");
 				
 			}
-			mv.addObject("path", "../index");
+			mv.addObject("path", "../");
 			mv.setViewName("common/common_result");
 		
 		

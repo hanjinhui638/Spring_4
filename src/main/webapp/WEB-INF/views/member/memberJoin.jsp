@@ -16,32 +16,40 @@
   
     <div class="form-group">
       <label for="id">ID:</label>
-      <input type="text" class="form-control" id="id">
+      <input type="text" class="form-control" id="id" name ="id">
     </div>
     <div class="form-group">
       <label for="pw">Password:</label>
-      <input type="password" class="form-control" id="pw">
+      <input type="password" class="form-control" id="pw" name ="pw">
     </div>
-     <div class="form-group">
+    <!--  <div class="form-group">
       <label for="pw">Password:</label>
       <input type="password" class="form-control">
-    </div>
+    </div> -->
      <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name">
+      <input type="text" class="form-control" id="name" name = "name">
     </div>
      <div class="form-group">
       <label for="email">E-mail:</label>
-      <input type="text" class="form-control" id="email">
+      <input type="text" class="form-control" id="email" name = "email">
     </div>
       <div class="form-group">
       <label for="birth">Birth:</label>
-      <input type="text" class="form-control" id="birth">
+      <input type="text" class="form-control" id="birth" name = "birth">
     </div>
       <div class="form-group">
       <label for="gender">gender:</label>
-      <input type="text" class="form-control" id="gender">
+      <input type="text" class="form-control" id="gender" name = "gender">
     </div>
+    
+<!--     <div class="radio">
+  	<label><input type="radio" name="optradio" checked>F</label>
+	</div>
+	<div class="radio">
+ 	 <label><input type="radio" name="optradio">M</label>
+	</div>
+     -->
     
      <button class="btn btn-info">Join</button>
   </form>
