@@ -3,88 +3,58 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="qnaMapper">
-  	
-  	<!-- delete -->
-  	<delete id="boardDelete" parameterType="BoardVO">
-  		delete qna where num = #{num}
-  	</delete>
-  	
-  	<!-- update -->
-  	<update id="boardUpdate" parameterType="BoardVO">
-  		update qna set title = #{title}, contents=#{contents} where num = #{num}
-  	
-  	</update>	
-  	
-	<!-- write   -->
-  	<insert id="boardWrite" parameterType="BoardVO" >
-  		insert into qna
-  		values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, board_seq.currval, 0, 0)
-  	</insert>
-  
-  
-  
-  	<insert id = "boardReply" parameterType="QnaVO">
-  		insert into qna values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, #{ref}, #{step}, #{depth})
-  	
-  	</insert>
-  
-  
-  
-  	<update id="boardReplyUpdate" parameterType="QnaVO">
-  	
-  			update qna set step=step+1 where ref =#{ref} and step > #{step}
-  	
-  	</update>
-  	
-  
-  	
-  	
-  	<!-- Select -->
-  	<select id="boardSelect" parameterType="QnaVO" resultType="QnaVO">
-  		select * from qna where num = #{num}
-  		
-  	</select>
-  
-  
-  
-  
-  	<!-- Count -->
-  	<select id = "boardCount" resultType="java.lang.Integer" parameterType="com.jh.s4.util.Pager">
-		select count(num) from qna
-			<choose>
-				<when test = "kind == 'kt'">
-					where title like '%'||#{search}||'%'
-				</when>
-				<when test ="kind == 'kw'">
-					where writer like '%'||#{search}||'%'
-				</when>
-				<otherwise>
-					where contents like '%'||#{search}||'%' 
-				</otherwise>
-			</choose>  		
-  	</select>
-  
-  	<!-- 	List -->
-  	<select id="boardList" resultType="com.jh.s4.model.BoardQnaVO" parameterType="com.jh.s4.util.Pager">
- 		select*from 
- 		(select rownum R,Q.* from 
- 			(select * from qna 
- 				<choose>
- 					<when test = "kind == 'kt'">
- 						where title like '%'||#{search}||'%'
- 					</when>
- 					<when test="kind == 'kw'">
- 						where writer like '%'||#{search}||'%'
- 					</when>
- 					<otherwise>
- 						where contents like '%'||#{search}||'%'
- 					</otherwise>
- 				</choose>
- 			order by ref desc, step asc) Q)
-  		where R between #{startRow} and #{lastRow}
- 	 </select>
-  
-  
-  
-  </mapper>
+<mapper namespace="qnaMapper">
+	<sql id="bs">
+		<choose>
+			<when test="kind == 'kt'">where title like '%'||#{search}||'%'</when>
+			<when test="kind == 'kw'">where writer like '%'||#{search}||'%'</when>
+			<otherwise>where contents like '%'||#{search}||'%'</otherwise>
+		</choose>
+	</sql>
+	
+	<insert id="boardReply" parameterType="BoardVO">
+		insert into qna 
+		values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, 
+			(select ref from qna where num=#{num}), 
+			(select step from qna where num=#{num})+1, 
+			(select depth from qna where num=#{num})+1)
+	</insert>
+
+	<update id="boardReplyUpdate" parameterType="BoardVO">
+		update qna set step = step+1 
+			where ref = (select ref from qna where num=#{num}) 
+			and step > (select step from qna where num=#{num})
+	</update>
+	
+	<delete id="boardDelete" parameterType="BoardVO">
+		delete from qna where num= #{num}
+	</delete>
+	
+	<update id="boardUpdate" parameterType="BoardVO">
+		update qna set title= #{title}, contents= #{contents} where num= #{num}
+	</update>
+	
+	<select id="boardSelect" resultType="QnaVO" parameterType="BoardVO">
+		select * from qna where num = #{num}
+	</select>
+
+	<insert id="boardWrite" parameterType="BoardVO">
+		insert into qna 
+		values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, board_seq.currval, 0, 0)
+	</insert>
+
+	<select id="boardList" resultType="QnaVO" parameterType="Pager">
+		select * from
+			(select Q.*, rownum R from
+				(select * from qna
+					<include refid="bs"></include>
+				order by ref desc, step asc) Q)
+			where R between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="boardCount" resultType="Integer" parameterType="Pager">
+		select count(nvl(num, 0)) from qna
+			<include refid="bs"></include>
+	</select>
+	
+</mapper>

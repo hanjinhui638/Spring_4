@@ -24,7 +24,4 @@ public class BoardQnaVO extends BoardVO{
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
-	
-	
-	
 }

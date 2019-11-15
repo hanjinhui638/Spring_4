@@ -9,7 +9,7 @@ public class BoardVO {
 	private String writer;
 	private String contents;
 	private Date reg_date;
-	private int hit;
+	private Integer hit;
 	
 	public int getNum() {
 		return num;
@@ -41,10 +41,10 @@ public class BoardVO {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	public int getHit() {
+	public Integer getHit() {
 		return hit;
 	}
-	public void setHit(int hit) {
+	public void setHit(Integer hit) {
 		this.hit = hit;
 	}
 }

@@ -1,42 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../layout/bootStrap.jsp"/>
+<c:import url="../layout/bootStrap.jsp" />
 </head>
 <body>
-<c:import url="../layout/nav.jsp"/>
-	<h1>Write Form</h1>
-	
+<c:import url="../layout/nav.jsp" />
 	<div class="container">
-  <h2>${board}Write</h2>
-  <form action="${board}Reply" method="post">
-    <div class="form-group">
-      <label for="title">TITLE:</label>
-      <input type="hidden" name="num" value="${dto.num}">
-      <input type="text" class="form-control" id="title" placeholder="Enter title" name="title"> <!-- name은 parameter DBcloumn과 동일하게 -->
-    </div>
-    
-    <div class="form-group">
-      <label for="writer">WRITER:</label>
-      <input type="text" class="form-control" id="writer" placeholder="Enter writer" name="writer" >
-    </div>
-      <label for="contents">CONTENTS:</label>
-    <div class="form-group">    
-      <textarea rows="10" cols="160" name = "contents"></textarea>
-    </div>     
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-</div>
-	
-	
-	<form action="./${board}Write" method="post">
-			
-		<button>Write</button>
-	</form>
+	  <h2>${board} Reply Form</h2>
+	  <form action="${board}Reply" method="post">
+	  
+	  	<input type="hidden" name="num" value="${num}">
+	  	
+	    <div class="form-group">
+	      <label for="title">Title:</label>
+	      <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="writer">Writer:</label>
+	      <input type="text" class="form-control" id="writer" placeholder="Enter Writer" name="writer">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="contents">Contents:</label>
+	      <textarea  rows="20" cols="50" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
+	    </div>
+	    
+	     <button class="btn btn-info">Submit</button>
+	    </form>
+	</div>
 </body>
 </html>

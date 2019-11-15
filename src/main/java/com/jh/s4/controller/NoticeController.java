@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jh.s4.model.BoardNoticeVO;
 import com.jh.s4.model.BoardVO;
 import com.jh.s4.service.BoardNoticeService;
 import com.jh.s4.util.Pager;
@@ -19,119 +20,93 @@ public class NoticeController {
 	
 	@Inject
 	private BoardNoticeService boardNoticeService;
-	
-	
-	@RequestMapping(value = "noticeDelete")
-	public ModelAndView boardDelete(BoardVO boardVO)throws Exception{
+
+	@RequestMapping("noticeDelete")
+	public ModelAndView boardDelete(BoardVO boardVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = boardNoticeService.boardDelete(boardVO);
-		String msg="Fail";
-		
 		if(result>0) {
-			msg = "Success";
+			mv.addObject("msg", "Delete Success");
+		}else {
+			mv.addObject("msg", "Delete Fail");
 		}
-		
-		mv.addObject("msg", msg);
-		mv.addObject("path", "./noticeList");
+		mv.addObject("path", "notice/noticeList");
 		mv.setViewName("common/common_result");
+		
 		return mv;
 	}
-	
 	
 	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)
-	public ModelAndView boardUpdate(BoardVO boardVO)throws Exception{
+	public ModelAndView boardUpdate(BoardNoticeVO boardnoticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = boardNoticeService.boardUpdate(boardVO);
-		
+		int result = boardNoticeService.boardUpdate(boardnoticeVO);
 		if(result>0) {
-			mv.setViewName("redirect:./noticeList");
+			mv.addObject("msg", "Update Success");
 		}else {
 			mv.addObject("msg", "Update Fail");
-			mv.addObject("path", "./noticeList");
-			mv.setViewName("common/common_result");
 		}
+		mv.addObject("path", "notice/noticeList");
+		mv.setViewName("common/common_result");
 		
 		return mv;
 	}
 	
-	@RequestMapping(value = "noticeUpdate", method = RequestMethod.GET)
-	public ModelAndView boardUpdateForm(BoardVO boardVO)throws Exception{
+	@RequestMapping("noticeUpdate")
+	public ModelAndView boardUpdate(BoardVO boardVO) throws Exception {
+		BoardVO boardVO2 = boardNoticeService.boardSelect(boardVO);
 		ModelAndView mv = new ModelAndView();
-		boardVO = boardNoticeService.boardSelect(boardVO);
-		
-		if(boardVO != null) {
-			mv.addObject("board", "notice");
-			mv.addObject("dto", boardVO);
-			mv.setViewName("board/boardUpdate");
-		}else {
-			mv.addObject("msg", "fail");
-			mv.addObject("path", "./noticeList");
-			mv.setViewName("common/common_result");
-		}
+		mv.addObject("update", boardVO2);
+		mv.addObject("board", "notice");
+		mv.setViewName("board/boardUpdate");
 		
 		return mv;
 	}
 	
-	
-	
-	
-	//Select
-	
-	@RequestMapping(value = "noticeSelect", method = RequestMethod.GET)
-	public ModelAndView boardSelect(BoardVO boardVO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		boardVO = boardNoticeService.boardSelect(boardVO);
-		
-			if(boardVO == null) {
-				mv.addObject("msg", "fail");
-				mv.addObject("path", "./noticeList");
-				mv.setViewName("common/common_result");
-			}else {
-				mv.addObject("dto", boardVO);
-				mv.addObject("board", "notice");
-				mv.setViewName("board/boardSelect");
-			}
-			return mv;
-	}
-	
-	
-	//write
-	
-	@RequestMapping(value = "noticeWrite", method = RequestMethod.GET)
-	public ModelAndView boardWrite() throws Exception{
+	@RequestMapping("noticeSelect")
+	public ModelAndView boardSelect(BoardVO boardVO) throws Exception {
+		BoardVO boardVO2 = boardNoticeService.boardSelect(boardVO);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("board", "notice");
-		mv.setViewName("board/boardWrite"); 
+		mv.addObject("select", boardVO2);
+		mv.setViewName("board/boardSelect");
+		
 		return mv;
 	}
-	
 	
 	@RequestMapping(value = "noticeWrite", method = RequestMethod.POST)
-	public ModelAndView boardWrite(BoardVO boardVO) throws Exception{
+	public ModelAndView boardWrite(BoardVO boardVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = boardNoticeService.boardWrite(boardVO);
-		
-		if(result > 0) {
-			mv.setViewName("redirect:./noticeList");
+		if(result>0) { 
+			mv.addObject("msg", "WriteSuccess");
+			//mv.setViewName("redirect:./noticeList");
 		}else {
-			mv.addObject("msg", "Fail");
-			mv.addObject("path", "./noticeList");
-			mv.setViewName("common/common_result");
-		}	
-			
+			mv.addObject("msg", "WriteFail");
+		}
+		mv.addObject("path", "noticeList");
+		mv.setViewName("common/common_result");
+		
 		return mv;
 	}
 	
-	//List
+	@RequestMapping("noticeWrite")
+	public ModelAndView boardWrite() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("board", "notice");
+		mv.setViewName("board/boardWrite");
+		
+		return mv;
+	}
 	
 	@RequestMapping("noticeList")
-	public ModelAndView boardList(Pager pager)throws Exception{
+	public ModelAndView boardList(Pager pager) throws Exception {
 		List<BoardVO> ar = boardNoticeService.boardList(pager);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
 		mv.addObject("board", "notice");
 		mv.setViewName("board/boardList");
+		
 		return mv;
 	}
 }

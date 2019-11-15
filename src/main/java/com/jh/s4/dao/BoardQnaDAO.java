@@ -13,40 +13,40 @@ import com.jh.s4.util.Pager;
 
 @Repository
 public class BoardQnaDAO implements BoardDAO {
-	
+
 	@Inject
 	private SqlSession sqlSession;
 	private final static String NAMESPACE = "qnaMapper.";
 	
-	public int boardReply(BoardQnaVO boardQnaVO)throws Exception{
-		return sqlSession.insert(NAMESPACE+"boardReply", boardQnaVO);
-		
-	}
-	public int boardReplyUpdate(BoardQnaVO boardQnAVO)throws Exception{
-			return sqlSession.update(NAMESPACE+"boardReplyUpdate", boardQnAVO);
+	public int boardReply(BoardVO boardVO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"boardReply", boardVO);
 	}
 	
+	public int boardReplyUpdate(BoardVO boardVO) throws Exception {
+		return sqlSession.update(NAMESPACE+"boardReplyUpdate", boardVO);
+	}
 	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {
-		
+		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"boardList", pager);
 	}
 
 	@Override
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
-		
+		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"boardSelect", boardVO);
 	}
 
 	@Override
 	public int boardWrite(BoardVO boardVO) throws Exception {
+		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"boardWrite", boardVO);
 	}
 
 	@Override
 	public int boardUpdate(BoardVO boardVO) throws Exception {
-		
+		// TODO Auto-generated method stub
 		return sqlSession.update(NAMESPACE+"boardUpdate", boardVO);
 	}
 
@@ -58,6 +58,7 @@ public class BoardQnaDAO implements BoardDAO {
 
 	@Override
 	public int boardCount(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"boardCount", pager);
 	}
 

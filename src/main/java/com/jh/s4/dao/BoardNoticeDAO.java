@@ -11,33 +11,33 @@ import com.jh.s4.model.BoardVO;
 import com.jh.s4.util.Pager;
 
 @Repository
-public class BoardNoticeDAO implements BoardDAO{
-	
+public class BoardNoticeDAO implements BoardDAO { //구현
+
 	@Inject
 	private SqlSession sqlSession;
-	private final static String NAMESPACE="noticeMapper.";
+	private final static String NAMESPACE = "noticeMapper.";
 	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {
-		
-		return sqlSession.selectList(NAMESPACE+"boardList", pager); 
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+"boardList", pager);
 	}
 
 	@Override
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
-	
+		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"boardSelect", boardVO);
 	}
 
 	@Override
 	public int boardWrite(BoardVO boardVO) throws Exception {
-		
+		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"boardWrite", boardVO);
 	}
 
 	@Override
 	public int boardUpdate(BoardVO boardVO) throws Exception {
-
+		// TODO Auto-generated method stub
 		return sqlSession.update(NAMESPACE+"boardUpdate", boardVO);
 	}
 
@@ -49,8 +49,9 @@ public class BoardNoticeDAO implements BoardDAO{
 
 	@Override
 	public int boardCount(Pager pager) throws Exception {
-		
+		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"boardCount", pager);
 	}
 
+	
 }
