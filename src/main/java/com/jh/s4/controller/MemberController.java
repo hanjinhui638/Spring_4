@@ -21,6 +21,17 @@ public class MemberController {
 	@Inject
 	private MemberServiceImpl memberServiceImpl;
 	
+	
+	
+	//update
+	@GetMapping(value = "memberUpdate")
+	public void memberUpdate()throws Exception{
+		
+		
+	}
+	
+
+	//Logout
 	@GetMapping(value = "memberLogout")
 	public String memberLogout(HttpSession session)throws Exception{
 			//session.removeAttribute("member");
@@ -28,8 +39,8 @@ public class MemberController {
 			return "redirect:../";
 	}
 	
-	//Login
 	
+	//Login
 	@GetMapping(value = "memberLogin")
 	public void memberLogin()throws Exception{
 			
@@ -61,7 +72,6 @@ public class MemberController {
 		
 		model.addAttribute("dto", memberVO);
 		model.addAttribute("result", result);
-	
 		
 	}
 	

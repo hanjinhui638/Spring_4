@@ -37,7 +37,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int memberUpdate(MemberVO memberVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(NAMESPACE+"memberUpdate", memberVO);
 	}
 
 	@Override
