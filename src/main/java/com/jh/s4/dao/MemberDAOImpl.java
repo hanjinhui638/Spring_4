@@ -1,7 +1,6 @@
 package com.jh.s4.dao;
 
 import javax.inject.Inject;
-import javax.xml.stream.events.Namespace;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -37,13 +36,13 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int memberUpdate(MemberVO memberVO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"memberUpdate", memberVO);
+		return sqlSession.update(NAMESPACE+"memberUpdate", memberVO);
 	}
 
 	@Override
 	public int memberDelete(MemberVO memberVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(NAMESPACE+"memberDelete", memberVO);
 	}
 
 	@Override

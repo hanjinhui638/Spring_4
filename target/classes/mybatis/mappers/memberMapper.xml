@@ -27,9 +27,9 @@
  	</update>
  
  	<!-- delete -->
- 	<!--  <delete id="memberDelete" parameterType="MemberVO">
+ 	<delete id="memberDelete" parameterType="MemberVO">
  		delete from member where id = #{id}
- 	</delete> -->
+ 	</delete>
  
  
  </mapper>
