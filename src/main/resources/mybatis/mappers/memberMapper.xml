@@ -23,7 +23,7 @@
  	
  	<!-- update -->
  	<update id="memberUpdate" parameterType="MemberVO">
- 		update member set pw= #{pw}, name= #{name}, email= #{email}, birth= #{birth} where id = #{id}
+ 		update member set pw= #{pw}, name= #{name}, email= #{email}, birth= #{birth} where id= #{id}
  	</update>
  
  	<!-- delete -->

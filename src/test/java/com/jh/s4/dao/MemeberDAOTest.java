@@ -30,13 +30,14 @@ public class MemeberDAOTest extends TestAbstractCase{
 	
 	@Test
 	public void memberUpdate()throws Exception{
-		MemberVO memberVO = new MemberVO();
+		MemberVO memberVO =new MemberVO();
 		
+		memberVO.setId("id2");
 		memberVO.setPw("test");
-		memberVO.setName("test");
 		memberVO.setName("tn");
 		memberVO.setEmail("k@g.com");
 		memberVO.setBirth("2000-12-12");
+		
 		
 		int result = memberDAO.memberUpdate(memberVO);
 		assertEquals(1, result);
