@@ -13,5 +13,25 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+<div id = "result">
+	<input type="text" id = "num">
+	<button id ="btn">CLICK</button>
+	
+</div>
+<script type="text/javascript">
+	$("#btn").click(function(){
+		var num = $("#num").val();
+											//data  = > response Text
+		//$.get("./getNum?num="+num, function(data){
+		//	$("#result").append(data);
+			
+		//});				//{파라미터:변수명}
+		$.post("./getNum",{num:num} ,function(data) {
+				$("#result").append(data);
+		});
+	});
+
+</script>
 </body>
 </html>
