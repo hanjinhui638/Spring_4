@@ -1,7 +1,6 @@
 package com.jh.s4.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -21,14 +20,64 @@ public class MemberController {
 	@Inject
 	private MemberServiceImpl memberServiceImpl;
 	
+	//Delete
+	
+	@RequestMapping(value = "memberDelete")
+	public ModelAndView memberDelete(MemberVO memberVO, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = memberServiceImpl.memberDelete(memberVO);
+		
+		String msg = "탈퇴 실패";
+		if(result>0) {
+			msg = "탈퇴 성공";
+		}
+		mv.addObject("msg", msg);
+		mv.addObject("path", "../");
+		mv.setViewName("common/common_result");
+		
+		session.invalidate();
+		
+		return mv;
+		
+	}
+	
+	
+	
+	//mypage
+	
+	@GetMapping(value = "memberMypage")
+	public void membermypage() throws Exception{
+		
+		
+	}
 	
 	
 	//update
+	
 	@GetMapping(value = "memberUpdate")
 	public void memberUpdate()throws Exception{
 		
 		
 	}
+	
+	@PostMapping(value = "memberUpdate")
+	public ModelAndView memberUpdate(MemberVO memberVO, HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = memberServiceImpl.memberUpdate(memberVO);
+
+		String msg = "Update Fail";
+		
+		if(result>0) {
+			msg = "Update Success";
+			session.setAttribute("member", memberVO);
+		}
+			mv.addObject("msg", msg);
+			mv.addObject("path", "../");
+			mv.setViewName("common/common_result");
+		
+			return mv;
+	}
+	
 	
 
 	//Logout
@@ -62,7 +111,6 @@ public class MemberController {
 	@GetMapping(value = "memberCheckId")
 	public void memberCheckId(MemberVO memberVO, Model model)throws Exception{
 		memberVO = memberServiceImpl.memberCheckId(memberVO);
-		/* checkVO null: 사용가능 */
 		
 		String result = "중복된 ID";
 		if(memberVO == null){
