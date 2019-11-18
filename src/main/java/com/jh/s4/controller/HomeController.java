@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -52,10 +53,33 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping(value = "/testAjax")
-	public void testAjax()throws Exception{
+	
+	
+	
+	@PostMapping(value = "/testAjax")
+	public void testAjax(Model model, int num)throws Exception{
 		Random r = new Random();
-		int num = r.nextInt();
+		num = r.nextInt(num);
+		model.addAttribute("num", num);
+	}
+	
+	@GetMapping(value = "/selectAnimal")
+	public void selectAnimal(String kind, Model model)throws Exception{
+		// System.out.println(kind); ->test
+		if(kind.equals("d")) {
+			String [] kinds = {"치와와","푸들", "말티즈"};
+			model.addAttribute("kind", kinds);
+			
+		}else if(kind.equals("c")) {
+			String [] kinds = {"숏컷","샴", "페르시안"};
+			model.addAttribute("kind", kinds);
+			
+		}else {
+			String [] kinds = {"참새","앵무새", "비둘기"};
+			model.addAttribute("kind", kinds);
+		}
+		
+		
 		
 	}
 	
