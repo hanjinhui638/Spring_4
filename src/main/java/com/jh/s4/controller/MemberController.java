@@ -108,17 +108,16 @@ public class MemberController {
 	
 	
 	//checkId
-	@GetMapping(value = "memberCheckId")
+	@PostMapping(value = "memberCheckId")
 	public void memberCheckId(MemberVO memberVO, Model model)throws Exception{
 		memberVO = memberServiceImpl.memberCheckId(memberVO);
 		
-		String result = "중복된 ID";
+		String result = "unpass";
 		if(memberVO == null){
 			//사용가능
-			result = "사용가능한 ID";
+			result = "pass";
 		}//중복
 		
-		model.addAttribute("dto", memberVO);
 		model.addAttribute("result", result);
 		
 	}

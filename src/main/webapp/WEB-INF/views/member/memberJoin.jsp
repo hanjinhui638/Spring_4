@@ -17,16 +17,15 @@
     <div class="form-group">
       <label for="id">ID:</label>
       <input type="text" class="form-control" id="id" name ="id">
-      <input type="button" id="checkId" value = "중복확인">
+		<div id = "checkIdResult"></div>    <!-- 덮어씌우기   -->
     </div>
+   
+    
     <div class="form-group">
       <label for="pw">Password:</label>
       <input type="password" class="form-control" id="pw" name ="pw">
     </div>
-    <!--  <div class="form-group">
-      <label for="pw">Password:</label>
-      <input type="password" class="form-control">
-    </div> -->
+  
      <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" class="form-control" id="name" name = "name">
@@ -39,10 +38,7 @@
       <label for="birth">Birth:</label>
       <input type="text" class="form-control" id="birth" name = "birth">
     </div>
-    <!--   <div class="form-group">
-      <label for="gender">gender:</label>
-      <input type="text" class="form-control" id="gender" name = "gender">
-    </div> -->
+  
     <p>Gender</p>
 	<div class="radio">
   	<label><input type="radio" name="gender" value="F" >F</label>
@@ -51,16 +47,39 @@
  	 <label><input type="radio" name="gender" value="M">M</label>
 	</div>
     
-     <button class="btn btn-info">Join</button>
+     <input type = "button" id ="join" class="btn btn-info" value = "Join">
   </form>
 </div>
 
 <script type="text/javascript">
-		//$(선택자).action();
-		$("#checkId").click(function() {
-			var id = $("#id").val();
-			window.open("./memberCheckId?id="+id,"", "width=700, height=200, left=400, top=200");
-		}); //callback함수 
+	var idCheck = false; //false: 중복된 ID, 또는 중복 검사를 하지 않는 경우 
+						 //true : 중복되지 않은 ID
+
+	$("#join").click(function(){
+		alert(idCheck);
+	});
+
+	$("#id").blur(function() {
+		var id = $(this).val();
+		
+		$.post("./memberCheckId",{id:id}, function(data){
+			data = data.trim(); //공백제거
+			if(data=='pass'){
+				$("#checkIdResult").html('사용가능 ID');
+				$("#checkIdResult").attr("class","text-success" );
+				idCheck=true;
+			}else{
+				//$("#id").after('중복된 ID');
+				$("#checkIdResult").html('중복된 ID');
+				$("#checkIdResult").attr("class","text-danger");
+				$("#id").val(" "); //id 공백으로 
+				//$("#id").focus();
+				idCheck=false;
+			}
+				
+				
+		});
+	});
 		
 		
 </script>
