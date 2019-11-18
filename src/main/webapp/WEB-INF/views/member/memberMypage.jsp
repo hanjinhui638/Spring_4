@@ -17,7 +17,7 @@
     	 <label for="pw">Id:</label>
 	      <input type="text" class="form-control" value="${member.id}" id="id" name="id" readonly="readonly">
 	 </div>
-    
+   <!--  session scope생략 -->
     <div class="form-group">
       <label for="pw">Password:</label>
       <input type="password" class="form-control" id="pw" name ="pw" value = "${member.pw}" readonly="readonly">

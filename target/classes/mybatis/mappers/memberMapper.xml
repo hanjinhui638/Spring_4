@@ -19,7 +19,7 @@
  
  	<!-- login --><!-- 보안떄문에 id만 -->
  	<select id="memberLogin" resultType="MemberVO" parameterType="MemberVO">
- 		select * from member where id = #{id} and pw = #{pw}
+ 		select id, name, email, to_char(birth, 'yyyy-mm-dd') as birth, gender from member where id = #{id} and pw = #{pw}
  	</select>
  	
  	<!-- update -->
@@ -28,9 +28,9 @@
  	</update>
  
  	<!-- delete -->
- 	<!--  <delete id="memberDelete" parameterType="MemberVO">
+ 	<delete id="memberDelete" parameterType="MemberVO">
  		delete from member where id = #{id}
- 	</delete> -->
+ 	</delete>
  
  
  </mapper>

@@ -46,7 +46,7 @@ public class MemberController {
 	//mypage
 	
 	@GetMapping(value = "memberMypage")
-	public void membermypage() throws Exception{
+	public void memberMypage() throws Exception{
 		
 		
 	}
