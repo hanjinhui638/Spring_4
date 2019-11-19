@@ -41,6 +41,10 @@
 	  <div class="contents">
 		${select.contents}
 	  </div>
+	  <div>
+	  	<img alt = "" src="../resources/upload/notice/${select.fileName}">
+	  	
+	  </div>
 	  
 	  	<a href="${board}Update?num=${select.num}" class="btn btn-info">Update</a>
 	 	<a href="${board}Delete?num=${select.num}" class="btn btn-danger">Delete</a>

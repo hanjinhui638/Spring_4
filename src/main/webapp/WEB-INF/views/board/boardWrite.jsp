@@ -13,7 +13,7 @@
 <c:import url="../layout/nav.jsp" />
 	<div class="container">
 	  <h2>${board} Write Form</h2>
-	  <form action="${board}Write" method="post">
+	  <form action="${board}Write" method="post" enctype="multipart/form-data">
 	  	
 	    <div class="form-group">
 	      <label for="title">Title:</label>
@@ -28,6 +28,11 @@
 	    <div class="form-group">
 	      <label for="contents">Contents:</label>
 	      <textarea  rows="20" cols="50" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
+	    </div>
+	    
+	    <div class = "form-group">
+	      <label for="file">File:</label>
+	      <input type="file" class="form-control" id="file" name="file">
 	    </div>
 	    
 	     <button class="btn btn-info">Submit</button>
