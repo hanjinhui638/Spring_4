@@ -30,12 +30,14 @@
 	      <textarea  rows="20" cols="50" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
 	    </div>
 	    
+	    <div id = "files">
 	    <div class = "form-group">
 	      <label for="file">File:</label>
 	      <input type="file" class="form-control" id="file" name="file">
 	    </div>
+	    </div>
 	    
-	     <button class="btn btn-info">Submit</button>
+			<input type="button" class = "btn btn-success" value="Add File">
 	    </form>
 	</div>
 </body>

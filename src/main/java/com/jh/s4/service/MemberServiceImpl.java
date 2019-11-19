@@ -1,12 +1,16 @@
 package com.jh.s4.service;
 
+import java.io.File;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
 import com.jh.s4.dao.MemberDAO;
 import com.jh.s4.dao.MemberDAOImpl;
 import com.jh.s4.model.MemberVO;
+import com.jh.s4.util.FileSaver;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -21,14 +25,33 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int memberJoin(MemberVO memberVO) throws Exception {
+	public int memberJoin(MemberVO memberVO, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
+		//Server Hdd에 파일 저장 
+		//1. 파일을 저장할 실제 경로 
+		String realPath= session.getServletContext().getRealPath("resources/upload/member");
+		
+		
+		FileSaver fs = new FileSaver();
+		String fileName = fs.save3(realPath, memberVO.getFile());
+		
+		//String fileName = fs.save(realPath, memberVO.getFile());
+		memberVO.setFileName(fileName);
+		memberVO.setOriginalName(memberVO.getFile().getOriginalFilename());
+		//System.out.println(file.exists());
+		//System.out.println(file.isDirectory()); member가 true - > 폴더 false - > type
+					
 		return memberDAOImpl.memberJoin(memberVO);
+		
+		//return 0;
+		
 	}
 
 	@Override
 	public MemberVO memberLogin(MemberVO memberVO) throws Exception {
 		// TODO Auto-generated method stub
+	
+		
 		return memberDAOImpl.memberLogin(memberVO);
 	}
 
@@ -41,6 +64,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberDelete(MemberVO memberVO) throws Exception {
 		// TODO Auto-generated method stub
+		//session에서 가져온 memberVO
+		
+		
 		return memberDAOImpl.memberDelete(memberVO);
 	}
 

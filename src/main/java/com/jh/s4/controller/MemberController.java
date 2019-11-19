@@ -1,6 +1,7 @@
 package com.jh.s4.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jh.s4.model.MemberVO;
@@ -22,7 +24,7 @@ public class MemberController {
 	
 	//Delete
 	
-	@RequestMapping(value = "memberDelete")
+	@GetMapping(value = "memberDelete")
 	public ModelAndView memberDelete(MemberVO memberVO, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = memberServiceImpl.memberDelete(memberVO);
@@ -108,17 +110,16 @@ public class MemberController {
 	
 	
 	//checkId
-	@GetMapping(value = "memberCheckId")
+	@PostMapping(value = "memberCheckId")
 	public void memberCheckId(MemberVO memberVO, Model model)throws Exception{
 		memberVO = memberServiceImpl.memberCheckId(memberVO);
 		
-		String result = "중복된 ID";
+		String result = "unpass";
 		if(memberVO == null){
 			//사용가능
-			result = "사용가능한 ID";
+			result = "pass";
 		}//중복
 		
-		model.addAttribute("dto", memberVO);
 		model.addAttribute("result", result);
 		
 	}
@@ -131,18 +132,28 @@ public class MemberController {
 	}
 	
 	@PostMapping(value = "memberJoin")
-	public ModelAndView memberJoin(MemberVO memberVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int result = memberServiceImpl.memberJoin(memberVO);
-			if (result>0) {
-				mv.addObject("msg", "Join");
-			}else {
-				mv.addObject("msg", "Fail");
-				
-			}
-			mv.addObject("path", "../");
-			mv.setViewName("common/common_result");
+	public ModelAndView memberJoin(MemberVO memberVO, HttpSession session, HttpServletRequest request)throws Exception{
+		//System.out.println("Name : " +file.getName());
+		//System.out.println("OriginalFilename : "+file.getOriginalFilename());
+		//System.out.println("size : " + file.getSize());
 		
+		//tomcat의 임시경로 
+		//System.out.println(session.getServletContext().getRealPath("resources/upload")); /* 전체 정보를 담고 있는 application */
+		//System.out.println(request.getSession().getServletContext().getRealPath("resources/upload"));
+		
+		
+		
+		ModelAndView mv = new ModelAndView();
+		
+		  int result = memberServiceImpl.memberJoin(memberVO, session); 
+		  
+		  if (result>0) { 
+			  mv.addObject("msg", "Join"); 
+			  }else { 
+				  mv.addObject("msg","Fail");
+		  
+		  } mv.addObject("path", "../"); mv.setViewName("common/common_result");
+		 
 		
 		return mv;
 	}

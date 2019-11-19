@@ -9,8 +9,8 @@
  	
  	<!-- join -->
  	<insert id="memberJoin" parameterType="MemberVO">
-  		insert into member (id, pw, name, email, birth, gender)
-			values(#{id}, #{pw}, #{name}, #{email}, #{birth}, #{gender})
+  		insert into member (id, pw, name, email, birth, gender, fileName, originalName)
+			values(#{id}, #{pw}, #{name}, #{email}, #{birth}, #{gender}, #{fileName}, #{originalName})
  	</insert>
  	
  	<select id="memberCheckId" parameterType="MemberVO" resultType="MemberVO">
@@ -19,7 +19,7 @@
  
  	<!-- login --><!-- 보안떄문에 id만 -->
  	<select id="memberLogin" resultType="MemberVO" parameterType="MemberVO">
- 		select id, name, email, to_char(birth, 'yyyy-mm-dd') as birth, gender from member where id = #{id} and pw = #{pw}
+ 		select id, name, email, to_char(birth, 'yyyy-mm-dd') as birth, gender,fileName, originalName from member where id = #{id} and pw = #{pw}
  	</select>
  	
  	<!-- update -->
