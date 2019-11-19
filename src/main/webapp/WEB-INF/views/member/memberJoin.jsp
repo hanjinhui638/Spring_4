@@ -91,11 +91,7 @@
 		});
 	});
 	
-	$("#email").blur(function() {
-		var email = $(this).val();
-		
-		
-	});
+
 	
 	
 		
