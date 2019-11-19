@@ -42,7 +42,7 @@
 		${select.contents}
 	  </div>
 	  <div>
-	  	<img alt = "" src="../resources/upload/notice/${select.fileName}">
+	  	<img alt = ""  src="../resources/upload/notice/${select.fileName}">
 	  	
 	  </div>
 	  
