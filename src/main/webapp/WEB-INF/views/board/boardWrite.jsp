@@ -32,13 +32,44 @@
 	    
 	    <div id = "files">
 	    <div class = "form-group">
-	      <label for="file">File:</label>
-	      <input type="file" class="form-control" id="file" name="file">
+	      <label for="file" class = "control-label col-sm-2" >File:</label>
+	      <div class = "col-sm-9">
+	      <input type="file" class="form-control " id="file" name="file">
+	      </div>
+	      <div class = "col-sm-1">
+	      <input type="button" class="form-control btn btn-danger del" value="del">
+	      </div>
 	    </div>
 	    </div>
 	    
-			<input type="button" class = "btn btn-success" value="Add File">
+			<input type="button" class = "btn btn-success" value="Add File" id = "add">
 	    </form>
+	    	 <button class="btn btn-info">Submit</button>
 	</div>
+	<script type="text/javascript">
+		var files = $("#files").html(); //click event 밖에 선언 
+		var count =0; 		//안에 선언하면 초기화
+	
+		$("#files").empty(); //내용만지움 vs remove(전체를지움)
+		
+		
+		$("#add").click(function () {
+				if(count<5){
+				$("#files").append(files);
+				count++;
+				}else{
+					alert("최대 5개 가능");
+				}
+		});
+		
+		
+		$(".del").click(function() {
+			vent.preventDefault();
+			alert("del");
+		});
+		
+	
+	</script>
+	
 </body>
 </html>
