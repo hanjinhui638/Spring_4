@@ -1,5 +1,7 @@
 package com.jh.s4.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberVO {
 
 	private String id;
@@ -9,8 +11,17 @@ public class MemberVO {
 	private String birth;
 	private String gender;
 	private int point;
+	private MultipartFile file;
 	
 	
+	
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	
 	public String getId() {
 		return id;

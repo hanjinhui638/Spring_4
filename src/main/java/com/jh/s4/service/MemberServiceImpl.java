@@ -29,6 +29,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO memberLogin(MemberVO memberVO) throws Exception {
 		// TODO Auto-generated method stub
+		//Server Hdd에 파일 저장 
+		
 		return memberDAOImpl.memberLogin(memberVO);
 	}
 

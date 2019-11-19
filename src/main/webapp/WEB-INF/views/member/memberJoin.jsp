@@ -12,7 +12,8 @@
 <div class="container">
   <h2>Join</h2>
   <p>The form below contains two input elements</p>
-  <form action="./memberJoin" method="post">
+  <!-- form -> reset, submit(controller로) -->
+  <form action="./memberJoin" method="post" id="frm" enctype="multipart/form-data">
   
     <div class="form-group">
       <label for="id">ID:</label>
@@ -46,7 +47,14 @@
 	<div class="radio">
  	 <label><input type="radio" name="gender" value="M">M</label>
 	</div>
-    
+	
+	<!-- file -->
+	<div class="form-group">
+      <label for="file">File:</label>
+      <input type="file" class="form-control" id="file" name = "file">
+    </div>
+	
+	
      <input type = "button" id ="join" class="btn btn-info" value = "Join">
   </form>
 </div>
@@ -56,7 +64,9 @@
 						 //true : 중복되지 않은 ID
 
 	$("#join").click(function(){
-		alert(idCheck);
+		if(idCheck){
+			$("#frm").submit();
+		}
 	});
 
 	$("#id").blur(function() {
@@ -80,6 +90,8 @@
 				
 		});
 	});
+	
+	
 		
 		
 </script>
