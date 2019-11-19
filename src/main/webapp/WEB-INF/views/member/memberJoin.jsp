@@ -34,6 +34,7 @@
      <div class="form-group">
       <label for="email">E-mail:</label>
       <input type="text" class="form-control" id="email" name = "email">
+      <div id = "checkEmailResult"></div>
     </div>
       <div class="form-group">
       <label for="birth">Birth:</label>
@@ -91,7 +92,25 @@
 		});
 	});
 	
+	var emailCheck = false;
 	
+	$("#email").blur(function() {
+		var email = $(this).val();
+		
+		$.post("./memberCheckEmail",{email:email}, function(data2) {
+			data2 = data2.trim();
+			if(data2 == 'pass'){
+				$("#checkEmailResult").html('사용가능 E-mail'); //set
+				$("#checkEmailResult").attr("class","text-success");
+				emailCheck=true;
+			}else{
+				$("#checkEmailResult").html('중복된 E-mail');
+				$("#checkEmailResult").attr("class","text-danger");
+				$("#email").val(" ");
+				emailCheck = false;
+			}
+		});
+	});
 		
 		
 </script>

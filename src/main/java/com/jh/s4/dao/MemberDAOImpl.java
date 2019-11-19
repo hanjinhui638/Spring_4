@@ -13,6 +13,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private final static String NAMESPACE = "memberMapper.";
+	
+	@Override
+	public MemberVO memberCheckEmail(MemberVO memberVO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"memberCheckEmail", memberVO);
+		
+	}
 
 	@Override
 	public MemberVO memberCheckId(MemberVO memberVO) throws Exception {

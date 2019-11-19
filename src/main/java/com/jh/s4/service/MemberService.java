@@ -6,6 +6,9 @@ import com.jh.s4.model.MemberVO;
 
 public interface MemberService {
 	
+	//emailCheck
+	public MemberVO memberCheckEmail(MemberVO memberVO)throws Exception;
+	
 	//idcheck
 	public MemberVO memberCheckId(MemberVO memberVO)throws Exception;
 	

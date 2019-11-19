@@ -108,6 +108,18 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
+	//checkEmail
+	@PostMapping(value = "memberCheckEmail")
+	public void memberCheckEmail(MemberVO memberVO, Model model)throws Exception{
+		memberVO = memberServiceImpl.memberCheckEmail(memberVO);
+		
+		String result = "unpass";
+		if(memberVO == null) {
+			result = "pass";
+		}
+		model.addAttribute("result", result);
+	}
+	
 	
 	//checkId
 	@PostMapping(value = "memberCheckId")

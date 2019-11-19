@@ -16,6 +16,10 @@
  	<select id="memberCheckId" parameterType="MemberVO" resultType="MemberVO">
  		select id from member where id = #{id} 
  	</select>
+ 	
+ 	<select id="memberCheckEmail" parameterType="MemberVO" resultType="MemberVO">
+ 		select email from email where email = #{email}
+ 	</select>
  
  	<!-- login --><!-- 보안떄문에 id만 -->
  	<select id="memberLogin" resultType="MemberVO" parameterType="MemberVO">

@@ -19,6 +19,11 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAOImpl memberDAOImpl;
 	
 	@Override
+	public MemberVO memberCheckEmail(MemberVO memberVO)throws Exception{
+		return memberDAOImpl.memberCheckEmail(memberVO);
+	}
+	
+	@Override
 	public MemberVO memberCheckId(MemberVO memberVO) throws Exception {
 		
 		return memberDAOImpl.memberCheckId(memberVO);
