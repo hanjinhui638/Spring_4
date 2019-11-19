@@ -1,5 +1,7 @@
 package com.jh.s4.service;
 
+import javax.servlet.http.HttpSession;
+
 import com.jh.s4.model.MemberVO;
 
 public interface MemberService {
@@ -8,7 +10,7 @@ public interface MemberService {
 	public MemberVO memberCheckId(MemberVO memberVO)throws Exception;
 	
 	//join 메소드 이름 mapper의 아이디와 동일하게 
-	public int memberJoin(MemberVO memberVO)throws Exception;
+	public int memberJoin(MemberVO memberVO, HttpSession session)throws Exception;
 
 	//login 
 	public MemberVO memberLogin(MemberVO memberVO)throws Exception;

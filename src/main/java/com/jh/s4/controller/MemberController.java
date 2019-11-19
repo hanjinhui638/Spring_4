@@ -1,6 +1,7 @@
 package com.jh.s4.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ public class MemberController {
 	
 	//Delete
 	
-	@RequestMapping(value = "memberDelete")
+	@GetMapping(value = "memberDelete")
 	public ModelAndView memberDelete(MemberVO memberVO, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = memberServiceImpl.memberDelete(memberVO);
@@ -131,23 +132,28 @@ public class MemberController {
 	}
 	
 	@PostMapping(value = "memberJoin")
-	public ModelAndView memberJoin(MemberVO memberVO, MultipartFile file)throws Exception{
+	public ModelAndView memberJoin(MemberVO memberVO, HttpSession session, HttpServletRequest request)throws Exception{
 		//System.out.println("Name : " +file.getName());
 		//System.out.println("OriginalFilename : "+file.getOriginalFilename());
 		//System.out.println("size : " + file.getSize());
 		
+		//tomcat의 임시경로 
+		//System.out.println(session.getServletContext().getRealPath("resources/upload")); /* 전체 정보를 담고 있는 application */
+		//System.out.println(request.getSession().getServletContext().getRealPath("resources/upload"));
+		
+		
 		
 		ModelAndView mv = new ModelAndView();
 		
-		  int result = memberServiceImpl.memberJoin(memberVO); 
+		  int result = memberServiceImpl.memberJoin(memberVO, session); 
 		  
+		  if (result>0) { 
+			  mv.addObject("msg", "Join"); 
+			  }else { 
+				  mv.addObject("msg","Fail");
 		  
-		/*
-		 * if (result>0) { mv.addObject("msg", "Join"); }else { mv.addObject("msg",
-		 * "Fail");
-		 * 
-		 * } mv.addObject("path", "../"); mv.setViewName("common/common_result");
-		 */
+		  } mv.addObject("path", "../"); mv.setViewName("common/common_result");
+		 
 		
 		return mv;
 	}

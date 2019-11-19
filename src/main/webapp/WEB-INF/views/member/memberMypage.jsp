@@ -47,11 +47,13 @@
       <label for="birth">Point:</label>
       <input type="text" class="form-control" id="point" name = "point" value = "${member.point}" readonly="readonly">
     </div>
+    <div>
+    	<img alt = "" src="../resources/upload/member/${member.fileName}">   
+    </div>
   
- 		<a class = "btn btn-primary" id = "up" href="./memberUpdate?id=${member.id}">Update</a>
- 		<a class = "btn btn-danger" id = "del" href="./memberDelete?id=${member.id}">Delete</a>
+ 		<a class = "btn btn-primary" id = "up" href="./memberUpdate?id=${member.id}">정보수정</a>
+ 		<a class = "btn btn-danger" id = "del" href="./memberDelete?id=${member.id}">회원탈퇴</a>
 		
-  
   </form>
 </div>
 

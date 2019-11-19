@@ -55,7 +55,7 @@
     </div>
 	
 	
-     <input type = "button" id ="join" class="btn btn-info" value = "Join">
+     <input type = "submit" id ="join" class="btn btn-info" value = "Join">
   </form>
 </div>
 
