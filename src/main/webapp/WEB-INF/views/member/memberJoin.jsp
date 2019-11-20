@@ -97,8 +97,8 @@
 	$("#email").blur(function() {
 		var email = $(this).val();
 		
-		$.post("./memberCheckEmail",{email:email}, function(data2) {
-			data2 = data2.trim();
+		$.post("./memberCheckEmail",{email:email}, function(data) {
+			data = data.trim();
 			if(data2 == 'pass'){
 				$("#checkEmailResult").html('사용가능 E-mail'); //set
 				$("#checkEmailResult").attr("class","text-success");
