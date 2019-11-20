@@ -1,5 +1,6 @@
 package com.jh.s4.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jh.s4.model.BoardNoticeVO;
@@ -76,12 +78,22 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "noticeWrite", method = RequestMethod.POST)
-	public ModelAndView boardWrite(BoardVO boardVO, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		int result = boardNoticeService.boardWrite(boardVO, session);
+	public ModelAndView boardWrite(BoardVO boardVO, MultipartFile[] file, HttpSession session) throws Exception {
+													//file-> 파라미터명과 동일하게 
+		ModelAndView mv = new ModelAndView();	
+		
+		
+		for(int i=0;i<file.length;i++) {
+			System.out.println(file[i].getOriginalFilename());
+			
+			//ArrayList<MultipartFile>
+			//System.out.println(file.get(i).getOriginalFilename());
+		}
+		
+	int result = boardNoticeService.boardWrite(boardVO,file,session);
 		if(result>0) { 
 			mv.addObject("msg", "WriteSuccess");
-			//mv.setViewName("redirect:./noticeList");
+			mv.setViewName("redirect:./noticeList");
 		}else {
 			mv.addObject("msg", "WriteFail");
 		}

@@ -5,10 +5,13 @@ import java.io.FileOutputStream;
 import java.util.Calendar;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 //서비스에서 호출
+//객체생성
+@Component
 public class FileSaver {
 	
 	//3. Io Stream 사용 
