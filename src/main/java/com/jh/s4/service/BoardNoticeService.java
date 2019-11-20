@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jh.s4.dao.BoardNoticeDAO;
 import com.jh.s4.dao.NoticeFilesDAO;
+import com.jh.s4.model.BoardNoticeVO;
 import com.jh.s4.model.BoardVO;
 import com.jh.s4.model.NoticeFilesVO;
 import com.jh.s4.util.FileSaver;
@@ -38,11 +39,15 @@ public class BoardNoticeService implements BoardService {
 	@Override
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		BoardVO boardVO2 = boardNoticeDAO.boardSelect(boardVO);
+		boardVO = boardNoticeDAO.boardSelect(boardVO);
+		
+		BoardNoticeVO boardNoticeVO = (BoardNoticeVO)boardVO;
 	
 		List<NoticeFilesVO> ar = noticeFilesDAO.fileList(boardVO.getNum());
 		
-		return boardNoticeDAO.boardSelect(boardVO);
+		boardNoticeVO.setFiles(ar);
+		
+		return boardNoticeVO;
 	}
 
 	@Override

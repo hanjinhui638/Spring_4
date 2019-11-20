@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jh.s4.model.BoardQnaVO;
@@ -100,9 +101,14 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "qnaWrite", method = RequestMethod.POST)
-	public ModelAndView boardWrite(BoardVO boardVO, HttpSession session) throws Exception {
+	public ModelAndView boardWrite(BoardVO boardVO, MultipartFile [] file, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = boardQnaService.boardWrite(boardVO, session);
+		
+		for(int i=0; i<file.length;i++) {
+			System.out.println(file[i].getOriginalFilename());
+		}
+		
+		int result = boardQnaService.boardWrite(boardVO, file, session);
 		if(result>0) {
 			mv.addObject("msg", "WriteSuccess");
 		}else {
@@ -135,7 +141,7 @@ public class QnaController {
 		mv.setViewName("board/boardList");
 		
 		BoardVO boardVO = new BoardQnaVO();
-		//boardVO는 부모타입이니까 자식타입 BoardQnaVO를 담을 수 있다
+	
 		BoardQnaVO boardQnaVO = (BoardQnaVO)boardVO;
 		//데이터를 꺼내오려면 부모타입을 자식타입으로 형변환해줘야 함
 		boardQnaVO.getRef();

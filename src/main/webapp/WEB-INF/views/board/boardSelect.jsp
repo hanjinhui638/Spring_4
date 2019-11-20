@@ -41,11 +41,13 @@
 	  <div class="contents">
 		${select.contents}
 	  </div>
-	  <div>
-	  	<img alt = ""  src="../resources/upload/notice/${select.fileName}">
-	  	
-	  </div>
+	<div>
+		<c:forEach items = "${select.files}" var="file">
+			<a href="../resources/upload/${board}/${file.fname}">${file.oname}</a>
+		</c:forEach>
+	</div>
 	  
+	  <div>
 	  	<a href="${board}Update?num=${select.num}" class="btn btn-info">Update</a>
 	 	<a href="${board}Delete?num=${select.num}" class="btn btn-danger">Delete</a>
 		<c:catch>
@@ -54,7 +56,9 @@
 		 	</c:if>
 	 	</c:catch>
 		<a href="${board}List" class="btn btn-primary">List</a>
+		</div>
 	</div>
+	
 	
 </body>
 </html>
