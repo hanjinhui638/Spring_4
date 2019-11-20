@@ -42,7 +42,7 @@
 		<result property="reg_date" column="reg_date"/>
 		<result property="hit" column="hit"/>
 		<collection property="files" javaType="java.util.List" ofType="QnaFilesVO">
-			<id property="fnum" column="fnum"></id>
+			<id property="fnum" column="fnum"/>
 			<result property="fname" column="fname"/>
 			<result property="oname" column="oname"/>		
 		</collection>
@@ -51,8 +51,8 @@
 	
 	<select id="boardSelect" resultMap="boardFile" parameterType="BoardVO">
 		select Q.*, F.fnum, F.fname, F.oname
-		from qna Q left outer join qnafiles F 
-		on Q.num = F.fnum
+		from qna Q full outer join qnafiles F 
+		on Q.num = F.num
 		where Q.num = #{num}
 	</select>
 
