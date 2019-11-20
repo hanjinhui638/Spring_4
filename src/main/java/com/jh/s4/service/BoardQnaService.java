@@ -42,15 +42,15 @@ public class BoardQnaService implements BoardService {
 	@Override
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		boardVO = boardQnaDAO.boardSelect(boardVO);
+		//boardVO = boardQnaDAO.boardSelect(boardVO);
 		
-		BoardQnaVO boardQnaVO = (BoardQnaVO)boardVO;
+		//BoardQnaVO boardQnaVO = (BoardQnaVO)boardVO;
 		
-		List<QnaFilesVO> ar = qnaFilesDAO.fileList(boardVO.getNum());
+		//List<QnaFilesVO> ar = qnaFilesDAO.fileList(boardVO.getNum());
 				
-		boardQnaVO.setFiles(ar);
+		//boardQnaVO.setFiles(ar);
 		
-		return boardQnaVO;
+		return boardQnaDAO.boardSelect(boardVO);
 	}
 
 	@Override
