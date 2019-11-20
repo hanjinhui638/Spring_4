@@ -53,6 +53,12 @@
 		$("#files").empty(); //내용만지움 vs remove(전체를지움)
 		
 		
+		$("#files").on("click",".del",function(){
+			$(this)
+			$("???").remove();
+		});
+				
+		
 		$("#add").click(function () {
 				if(count<5){
 				$("#files").append(files);
@@ -62,11 +68,6 @@
 				}
 		});
 		
-		
-		$(".del").click(function() {
-			vent.preventDefault();
-			alert("del");
-		});
 		
 	
 	</script>
