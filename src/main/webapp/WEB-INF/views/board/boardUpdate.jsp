@@ -32,9 +32,23 @@
 	      <label for="contents">Contents:</label>
 	      <textarea  rows="20" cols="50" class="form-control" id="contents" placeholder="Enter Contents" name="contents">${update.contents}</textarea>
 	    </div>
+	    <div>
+	    <c:forEach items="${update.files}" var= "file">
+	    	<div>
+	    		<p>${file.oname}<input type="button" value="del" class = "del"></p>
+	    	</div>
+	    </c:forEach>
+	    </div>
 	    
 	     <button class="btn btn-info">Submit</button>
 	    </form>
 	</div>
+	<script type="text/javascript">
+		$(".del").click(function() {
+			alert("del");
+		});
+	
+	</script>
+	
 </body>
 </html>

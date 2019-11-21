@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jh.s4.model.BoardNoticeVO;
 import com.jh.s4.model.BoardVO;
+import com.jh.s4.model.NoticeFilesVO;
 import com.jh.s4.service.BoardNoticeService;
 import com.jh.s4.util.Pager;
 
@@ -24,7 +26,14 @@ public class NoticeController {
 	
 	@Inject
 	private BoardNoticeService boardNoticeService;
-
+	
+	@PostMapping(value = "fileDelete")
+	public void fileDelete(NoticeFilesVO noticeFilesVO)throws Exception{
+		boardNoticeService.fileDelete(noticeFilesVO);
+		
+	}
+	
+	
 	@RequestMapping("noticeDelete")
 	public ModelAndView boardDelete(BoardVO boardVO) throws Exception {
 		ModelAndView mv = new ModelAndView();

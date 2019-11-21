@@ -41,12 +41,18 @@
 		<result property="contents" column="contents"/>
 		<result property="reg_date" column="reg_date"/>
 		<result property="hit" column="hit"/>
-		<collection property="files" javaType="java.util.List" ofType="QnaFilesVO">
-			<id property="fnum" column="fnum"/>
-			<result property="fname" column="fname"/>
-			<result property="oname" column="oname"/>		
-		</collection>
-		
+		<result property="ref" column="ref"/>
+		<result property="step" column="step"/>
+		<result property="depth" column="depth"/>
+		<collection property="files" javaType="java.util.List" ofType="QnaFilesVO" resultMap="fileResult">
+						
+		</collection>	
+	</resultMap>
+	
+	<resultMap type="QnaFilesVO" id="fileResult">
+		<id property="fnum" column="fnum"/>
+		<result property="fname" column="fname"/>
+		<result property="oname" column="oname"/>
 	</resultMap>
 	
 	<select id="boardSelect" resultMap="boardFile" parameterType="BoardVO">
