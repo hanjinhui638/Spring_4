@@ -102,12 +102,12 @@ public class NoticeController {
 	
 	@RequestMapping("noticeSelect")
 	public ModelAndView boardSelect(BoardVO boardVO) throws Exception {
-		
-		//boardVO.setContents(boardVO.getContents().replace("\r\n", "<br>"));
-		BoardVO boardVO2 = boardNoticeService.boardSelect(boardVO);
 		ModelAndView mv = new ModelAndView();
+		
+		boardVO.setContents(boardVO.getContents().replace("\r\n", "<br>"));
+		boardVO = boardNoticeService.boardSelect(boardVO);
 		mv.addObject("board", "notice");
-		mv.addObject("select", boardVO2);
+		mv.addObject("select", boardVO);
 		mv.setViewName("board/boardSelect");
 		
 		return mv;
