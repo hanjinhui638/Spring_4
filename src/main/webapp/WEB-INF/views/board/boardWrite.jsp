@@ -28,6 +28,8 @@
 	      <label for="contents">Contents:</label>
 	      <textarea  rows="20" cols="50" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
 	    </div>
+	    
+	    
 	
 	    
 	    <div id = "files">
@@ -41,6 +43,10 @@
 	     	 </div>
 	    	</div>
 	    </div>
+	    
+	  
+	    
+	    
 	    
 			<input type="button" class = "btn btn-success" value="Add File" id = "add">
 	    	 <button class="btn btn-info">Submit</button>
