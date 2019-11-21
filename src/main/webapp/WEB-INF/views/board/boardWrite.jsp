@@ -31,15 +31,15 @@
 	
 	    
 	    <div id = "files">
-	    <div class = "form-group" title = "parent" >
-	    	  <label for="file" class = "control-label col-sm-2" >File:</label>
+	    	<div class = "form-group" title = "parent" >
+	    	 	 <label for="file" class = "control-label col-sm-2" >File:</label>
 	     	 <div class = "col-sm-9">
-	      <input type="file" class="form-control " id="file" name="file">
-	      </div>
-	      <div class = "col-sm-1">
-	      <input type="button" class="form-control btn btn-danger del" value="del">
-	      </div>
-	    </div>
+	      			<input type="file" class="form-control " id="file" name="file">
+	      	</div>
+	     	 <div class = "col-sm-1">
+	      		<input type="button" class="form-control btn btn-danger del" value="del">
+	     	 </div>
+	    	</div>
 	    </div>
 	    
 			<input type="button" class = "btn btn-success" value="Add File" id = "add">

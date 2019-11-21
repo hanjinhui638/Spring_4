@@ -34,6 +34,11 @@ public class BoardNoticeService implements BoardService {
 		return noticeFilesDAO.fileDelete(noticeFilesVO);
 	}
 	
+	public int fileWrite(NoticeFilesVO noticeFilesVO)throws Exception{
+		return noticeFilesDAO.fileWrite(noticeFilesVO);
+		
+	}
+	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {
 		pager.makeRow();

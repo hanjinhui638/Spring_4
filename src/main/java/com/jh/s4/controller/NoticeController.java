@@ -27,10 +27,24 @@ public class NoticeController {
 	@Inject
 	private BoardNoticeService boardNoticeService;
 	
+	@PostMapping(value = "fileWrite")
+	public ModelAndView fileInsert(NoticeFilesVO noticeFilesVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardNoticeService.fileWrite(noticeFilesVO);
+		mv.setViewName("common/common_ajaxResult");
+		mv.addObject("result", result);
+		return mv;
+	}
+	
 	@PostMapping(value = "fileDelete")
-	public void fileDelete(NoticeFilesVO noticeFilesVO)throws Exception{
-		boardNoticeService.fileDelete(noticeFilesVO);
+	public ModelAndView fileDelete(NoticeFilesVO noticeFilesVO)throws Exception{
+		//System.out.println(noticeFilesVO.getFnum()); 
+		ModelAndView mv = new ModelAndView();
+		int result = boardNoticeService.fileDelete(noticeFilesVO);
+		mv.setViewName("common/common_ajaxResult");
+		mv.addObject("result", result);
 		
+		return mv;
 	}
 	
 	
@@ -52,8 +66,14 @@ public class NoticeController {
 	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)
 	public ModelAndView boardUpdate(BoardNoticeVO boardnoticeVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+	
+		
 		int result = boardNoticeService.boardUpdate(boardnoticeVO);
+		
 		if(result>0) {
+		
+			
 			mv.addObject("msg", "Update Success");
 		}else {
 			mv.addObject("msg", "Update Fail");
@@ -66,9 +86,13 @@ public class NoticeController {
 	
 	@RequestMapping("noticeUpdate")
 	public ModelAndView boardUpdate(BoardVO boardVO) throws Exception {
-		BoardVO boardVO2 = boardNoticeService.boardSelect(boardVO);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("update", boardVO2);
+		boardVO = boardNoticeService.boardSelect(boardVO);
+		
+		BoardNoticeVO noticeVO = (BoardNoticeVO)boardVO;
+		int size = noticeVO.getFiles().size();
+		mv.addObject("size", size);
+		mv.addObject("update", boardVO);
 		mv.addObject("board", "notice");
 		mv.setViewName("board/boardUpdate");
 		
