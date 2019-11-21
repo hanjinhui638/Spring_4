@@ -43,7 +43,7 @@
 	  </div>
 	<div>
 		<c:forEach items = "${select.files}" var="file">
-			<a href="../resources/upload/${board}/${file.fname}">${file.oname}</a>
+			<a href="./fileDown?fnum=${file.fnum}">${file.oname}</a>
 		</c:forEach>
 	</div>
 	  

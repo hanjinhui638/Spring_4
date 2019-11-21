@@ -16,6 +16,10 @@ public class NoticeFilesDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "noticeFilesMapper.";
 	
+	public NoticeFilesVO fileSelect(NoticeFilesVO noticeFilesVO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"fileSelect", noticeFilesVO);
+	}
+	
 	public int fileWrite(NoticeFilesVO noticeFilesVO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"fileWrite", noticeFilesVO);
 		

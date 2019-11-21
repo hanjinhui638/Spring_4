@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,15 +28,17 @@ public class NoticeController {
 	@Inject
 	private BoardNoticeService boardNoticeService;
 	
-	@PostMapping(value = "fileWrite")
-	public ModelAndView fileInsert(NoticeFilesVO noticeFilesVO)throws Exception{
+	@GetMapping(value = "fileDown")
+	public ModelAndView fileDown(NoticeFilesVO noticeFilesVO)throws Exception{
+		noticeFilesVO = boardNoticeService.fileSelect(noticeFilesVO);
 		ModelAndView mv = new ModelAndView();
-		int result = boardNoticeService.fileWrite(noticeFilesVO);
-		mv.setViewName("common/common_ajaxResult");
-		mv.addObject("result", result);
+		mv.addObject("file", noticeFilesVO);
+		mv.setViewName("fileDown");
+		mv.addObject("board", "notice");
 		return mv;
 	}
 	
+	//fileDelete
 	@PostMapping(value = "fileDelete")
 	public ModelAndView fileDelete(NoticeFilesVO noticeFilesVO)throws Exception{
 		//System.out.println(noticeFilesVO.getFnum()); 
@@ -63,13 +66,11 @@ public class NoticeController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)
-	public ModelAndView boardUpdate(BoardNoticeVO boardnoticeVO) throws Exception {
+	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)	//file 파라미터와 같은 이름 
+	public ModelAndView boardUpdate(BoardNoticeVO boardnoticeVO, MultipartFile[] file, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
-	
-		
-		int result = boardNoticeService.boardUpdate(boardnoticeVO);
+			
+		int result = boardNoticeService.boardUpdate(boardnoticeVO, file, session);
 		
 		if(result>0) {
 		

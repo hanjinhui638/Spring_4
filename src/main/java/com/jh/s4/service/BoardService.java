@@ -22,7 +22,7 @@ public interface BoardService {
 	public int boardWrite(BoardVO boardVO, MultipartFile [] file, HttpSession session) throws Exception;
 	
 	//update
-	public int boardUpdate(BoardVO boardVO) throws Exception;
+	public int boardUpdate(BoardVO boardVO, MultipartFile [] file, HttpSession sesiion) throws Exception;
 	
 	//delete
 	public int boardDelete(BoardVO boardVO) throws Exception;

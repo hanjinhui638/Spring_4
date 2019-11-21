@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +12,9 @@
 <body>
 <c:import url="../layout/nav.jsp" />
 	<div class="container">
-	  <h2>${board} Update Form</h2>
-	  <form action="${board}Update" method="post">
+	  <h2>${fn: toUpperCase(board)} Update Form</h2>
+	
+	  <form action="${board}Update" method="post" enctype="multipart/form-data">
 	  	
 	  	<div class="form-group">
 	      <input type="hidden" class="form-control" value="${update.num}" id="num" name="num">
@@ -65,8 +67,8 @@
 <script type="text/javascript">
 		var files = $("#files").html();
 		$("#files").empty();
-		var count  = ${size};
-		var count = 0;
+		var count  = ${fn:length(update.files)};
+
 		
 		//위임이벤트 
 		$("#files").on("click",".del",function(){
