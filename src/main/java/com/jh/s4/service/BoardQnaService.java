@@ -74,7 +74,7 @@ public class BoardQnaService implements BoardService {
 	}
 
 	@Override
-	public int boardUpdate(BoardVO boardVO) throws Exception {
+	public int boardUpdate(BoardVO boardVO, MultipartFile[] file, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
 		return boardQnaDAO.boardUpdate(boardVO);
 	}

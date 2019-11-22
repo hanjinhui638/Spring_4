@@ -104,10 +104,10 @@ public class NoticeController {
 	public ModelAndView boardSelect(BoardVO boardVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		boardVO.setContents(boardVO.getContents().replace("\r\n", "<br>"));
-		boardVO = boardNoticeService.boardSelect(boardVO);
+		BoardVO boardVO2 = boardNoticeService.boardSelect(boardVO);
+		boardVO2.setContents(boardVO2.getContents().replace("\r\n", "<br>"));
 		mv.addObject("board", "notice");
-		mv.addObject("select", boardVO);
+		mv.addObject("select", boardVO2);
 		mv.setViewName("board/boardSelect");
 		
 		return mv;

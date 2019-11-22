@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../layout/bootStrap.jsp" />
+<c:import url="../layout/summerNote.jsp"></c:import>
 </head>
 <body>
 <c:import url="../layout/nav.jsp" />
@@ -26,7 +27,7 @@
 	    
 	    <div class="form-group">
 	      <label for="contents">Contents:</label>
-	      <textarea  rows="20" cols="50" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
+	      <textarea  rows="30" cols="50" class="form-control" id="contents" placeholder="Enter Contents" name="contents"></textarea>
 	    </div>
 	    
 	    
@@ -44,12 +45,10 @@
 	    	</div>
 	    </div>
 	    
-	  
-	    
-	    
-	    
+	   
 			<input type="button" class = "btn btn-success" value="Add File" id = "add">
 	    	 <button class="btn btn-info">Submit</button>
+	    <!--  <input type="button" value = "test" id = "btn"> -->
 	    </form>
 	</div>
 	
@@ -64,9 +63,7 @@
 			$(this).parents(".form-group").remove(); 
 			count--;
 		});
-				
-		
-		
+			
 		
 		$("#add").click(function () {
 				if(count<5){
@@ -79,6 +76,16 @@
 					alert("최대 5개 가능");
 				}
 		});
+		
+		$("#contents").summernote({
+			 height: 500
+		});
+		
+		$("#btn").click(function() {
+				alert($("#contents").summernote('code'));
+		});
+		
+		//$("#contents").summernote('code','Hello');
 			
 </script>
 	

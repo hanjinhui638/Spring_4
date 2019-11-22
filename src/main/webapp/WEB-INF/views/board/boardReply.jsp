@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../layout/bootStrap.jsp" />
+<c:import url="../layout/summerNote.jsp"/>
 </head>
 <body>
 <c:import url="../layout/nav.jsp" />
@@ -34,5 +35,16 @@
 	     <button class="btn btn-info">Submit</button>
 	    </form>
 	</div>
+	
+	<script type="text/javascript">
+		$("#contents").summernote({
+			
+			height: 500
+		});
+	
+	
+	</script>
+	
+	
 </body>
 </html>
