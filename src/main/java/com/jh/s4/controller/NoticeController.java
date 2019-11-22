@@ -1,10 +1,9 @@
 package com.jh.s4.controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jh.s4.model.BoardNoticeVO;
 import com.jh.s4.model.BoardVO;
-import com.jh.s4.model.NoticeFilesVO;
+import com.jh.s4.model.FilesVO;
 import com.jh.s4.service.BoardNoticeService;
 import com.jh.s4.util.Pager;
 
@@ -29,10 +28,10 @@ public class NoticeController {
 	private BoardNoticeService boardNoticeService;
 	
 	@GetMapping(value = "fileDown")
-	public ModelAndView fileDown(NoticeFilesVO noticeFilesVO)throws Exception{
-		noticeFilesVO = boardNoticeService.fileSelect(noticeFilesVO);
+	public ModelAndView fileDown(FilesVO FilesVO)throws Exception{
+		FilesVO = boardNoticeService.fileSelect(FilesVO);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("file", noticeFilesVO);
+		mv.addObject("file", FilesVO);
 		mv.setViewName("fileDown");
 		mv.addObject("board", "notice");
 		return mv;
@@ -40,7 +39,7 @@ public class NoticeController {
 	
 	//fileDelete
 	@PostMapping(value = "fileDelete")
-	public ModelAndView fileDelete(NoticeFilesVO noticeFilesVO)throws Exception{
+	public ModelAndView fileDelete(FilesVO noticeFilesVO)throws Exception{
 		//System.out.println(noticeFilesVO.getFnum()); 
 		ModelAndView mv = new ModelAndView();
 		int result = boardNoticeService.fileDelete(noticeFilesVO);

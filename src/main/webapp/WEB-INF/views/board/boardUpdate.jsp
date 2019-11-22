@@ -111,7 +111,8 @@
 			height:400
 		});
 		
-		//$("#contents").summernote('code','${update.contents}');
+		var con = "${update.contents}";
+		$("#contents").summernote('code',con);
 	
 	</script>
 	

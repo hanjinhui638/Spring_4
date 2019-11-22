@@ -13,7 +13,7 @@ import com.jh.s4.dao.BoardNoticeDAO;
 import com.jh.s4.dao.NoticeFilesDAO;
 import com.jh.s4.model.BoardNoticeVO;
 import com.jh.s4.model.BoardVO;
-import com.jh.s4.model.NoticeFilesVO;
+import com.jh.s4.model.FilesVO;
 import com.jh.s4.util.FileSaver;
 import com.jh.s4.util.Pager;
 
@@ -29,12 +29,12 @@ public class BoardNoticeService implements BoardService {
 	@Inject
 	private NoticeFilesDAO noticeFilesDAO;
 	
-	public NoticeFilesVO fileSelect(NoticeFilesVO noticeFilesVO)throws Exception{
+	public FilesVO fileSelect(FilesVO noticeFilesVO)throws Exception{
 		return noticeFilesDAO.fileSelect(noticeFilesVO);
 	}
 	
 	
-	public int fileDelete(NoticeFilesVO noticeFilesVO)throws Exception{
+	public int fileDelete(FilesVO noticeFilesVO)throws Exception{
 		return noticeFilesDAO.fileDelete(noticeFilesVO);
 	}
 	
@@ -66,7 +66,7 @@ public class BoardNoticeService implements BoardService {
 		// TODO Auto-generated method stub
 		String realPath = session.getServletContext().getRealPath("resources/upload/notice");
 		
-		NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
+		FilesVO noticeFilesVO = new FilesVO();
 		int result = boardNoticeDAO.boardWrite(boardVO);
 		noticeFilesVO.setNum(boardVO.getNum());
 		
@@ -88,7 +88,7 @@ public class BoardNoticeService implements BoardService {
 		// TODO Auto-generated method stub
 		String realPath = session.getServletContext().getRealPath("resources/upload/notice");
 		
-		NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
+		FilesVO noticeFilesVO = new FilesVO();
 		int result = boardNoticeDAO.boardUpdate(boardVO);
 		
 		noticeFilesVO.setNum(boardVO.getNum());

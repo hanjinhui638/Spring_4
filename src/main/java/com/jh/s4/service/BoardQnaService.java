@@ -10,9 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jh.s4.dao.BoardQnaDAO;
 import com.jh.s4.dao.QnaFilesDAO;
-import com.jh.s4.model.BoardQnaVO;
 import com.jh.s4.model.BoardVO;
-import com.jh.s4.model.QnaFilesVO;
+import com.jh.s4.model.FilesVO;
 import com.jh.s4.util.FileSaver;
 import com.jh.s4.util.Pager;
 
@@ -58,7 +57,7 @@ public class BoardQnaService implements BoardService {
 		// TODO Auto-generated method stub
 		String realPath = session.getServletContext().getRealPath("resources/upload/qna");
 		
-		QnaFilesVO qnaFilesVO = new QnaFilesVO();
+		FilesVO qnaFilesVO = new FilesVO();
 		int result = boardQnaDAO.boardWrite(boardVO);
 		qnaFilesVO.setNum(boardVO.getNum());
 		

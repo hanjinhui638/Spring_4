@@ -4,11 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="qnaFilesMapper">
-	<insert id = "fileWrite" parameterType="QnaFilesVO">
+	<insert id = "fileWrite" parameterType="FilesVO">
 		insert into qnaFiles values(file_seq.nextval, #{num}, #{fname}, #{oname})
 	</insert>
 
-	<select id="fileList" parameterType="Integer" resultType="QnaFilesVO">
+	<select id="fileList" parameterType="Integer" resultType="FilesVO">
 		select * from qnaFiles where num = #{num}
 	</select>
 
