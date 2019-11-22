@@ -14,6 +14,18 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileSaver {
 	
+	
+	//file Delete
+	public boolean fileDelete(String realPath, String filename)throws Exception{
+		File file = new File(realPath, filename);
+		boolean check = false;
+		if(file.exists()) {
+			check = file.delete();
+		}
+		return check;
+	}
+	
+	
 	//3. Io Stream 사용 
 	public String save3(String realPath, MultipartFile multipartFile)throws Exception{	
 		File file = new File(realPath);

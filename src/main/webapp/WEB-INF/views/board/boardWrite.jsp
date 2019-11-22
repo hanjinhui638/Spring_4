@@ -78,8 +78,64 @@
 		});
 		
 		$("#contents").summernote({
-			 height: 500
+			 height: 500,
+			 collbacks:{
+				 onImageUpload:function(files,editor){
+					uploadFile(files[0], this);
+				 }, //upload 끝 
+				 onMediaDelete:function(files, editor){
+					 
+				 }// delete 끝 
+			 }//callBack 끝
 		});
+		
+		
+		
+		function deleteFile(file, editor){
+				var fileName = $(file).attr("src");
+				fileName = fileName.substring(fileName.lastIndexOf("/")+1);
+				//console.log(fileName);
+			
+				$.ajax({
+					type:"POST",
+					url: "summerfileDelete",
+					data: {
+						file:fileName
+						
+					},
+					success: function(data) {
+						console.log(data);
+					}
+					
+				});
+		}
+		
+		function uploadFile(file, editor) {
+			var formData = new FormData();
+			formData.append('file', file);		/* 파라미터 처리 form 생성 해서 input*/
+			
+			$.ajax({
+				data: formData,
+				type:"POST", 
+				url:"./summerfile", 
+				enctype: "multipart/form-data",
+				contentType: false,
+				cache: false,
+				prosessData: false,
+				success:function(data){
+						/* console.log(data); data -> filename */
+					data = data.trim();
+						console.log(data);
+					data = '../resources/upload/summerfile/'+data;
+					$(editor).summernote('insertImage', data);
+				}
+				/* ,
+				error:function(){							
+				} */
+				
+			});
+		}
+		
 		
 		$("#btn").click(function() {
 				alert($("#contents").summernote('code'));

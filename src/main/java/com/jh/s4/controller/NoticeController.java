@@ -27,6 +27,32 @@ public class NoticeController {
 	@Inject
 	private BoardNoticeService boardNoticeService;
 	
+	@PostMapping(value = "summerfileDelete")
+	public ModelAndView summerfileDelete(String file, HttpSession session)throws Exception{
+		boolean check = boardNoticeService.summerfileDelete(file, session);
+		String result = "Delete Fail";
+		if(check) {
+			result = "Delete Success";
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("common/common_ajaxResult");
+		mv.addObject("result", result);
+		return mv;
+	}
+	
+	@PostMapping(value = "summerFile")
+	public ModelAndView summerFile(MultipartFile file, HttpSession session)throws Exception{
+		String fileName = boardNoticeService.summerfile(file, session);
+		//System.out.println(file.getOriginalFilename()); test
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("common/common_ajaxResult");
+		mv.addObject("result", fileName);
+		return mv;
+	}
+	
+	
 	@GetMapping(value = "fileDown")
 	public ModelAndView fileDown(FilesVO FilesVO)throws Exception{
 		FilesVO = boardNoticeService.fileSelect(FilesVO);
@@ -85,13 +111,16 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("noticeUpdate")
-	public ModelAndView boardUpdate(BoardVO boardVO) throws Exception {
+	public ModelAndView boardUpdate(int num) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		boardVO = boardNoticeService.boardSelect(boardVO);
+		BoardVO boardVO = new BoardVO();
 		
-		BoardNoticeVO noticeVO = (BoardNoticeVO)boardVO;
-		int size = noticeVO.getFiles().size();
-		mv.addObject("size", size);
+		boardVO.setNum(num);
+		
+		boardVO = boardNoticeService.boardSelect(boardVO);
+		//BoardNoticeVO noticeVO = (BoardNoticeVO)boardVO;
+		//int size = noticeVO.getFiles().size();
+		//mv.addObject("size", size);
 		mv.addObject("update", boardVO);
 		mv.addObject("board", "notice");
 		mv.setViewName("board/boardUpdate");
