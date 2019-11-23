@@ -117,7 +117,7 @@
 			$.ajax({
 				data: formData,
 				type:"POST", 
-				url:"./summerfile", 
+				url:"./summerFile", 
 				enctype: "multipart/form-data",
 				contentType: false,
 				cache: false,
