@@ -79,12 +79,12 @@
 		
 		$("#contents").summernote({
 			 height: 500,
-			 collbacks:{
+			 callbacks:{
 				 onImageUpload:function(files,editor){
 					uploadFile(files[0], this);
 				 }, //upload 끝 
 				 onMediaDelete:function(files, editor){
-					 
+					 deleteFile(files[0],this);
 				 }// delete 끝 
 			 }//callBack 끝
 		});
@@ -121,7 +121,7 @@
 				enctype: "multipart/form-data",
 				contentType: false,
 				cache: false,
-				prosessData: false,
+				processData: false,
 				success:function(data){
 						/* console.log(data); data -> filename */
 					data = data.trim();
