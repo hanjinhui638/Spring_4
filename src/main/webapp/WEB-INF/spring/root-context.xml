@@ -30,19 +30,6 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
 	</bean>
 	
-	<!-- Advice -->
-	<bean class = "com.jh.s4.transfer.Card" id = "card"></bean>
-	
-	<aop:config>
-		<aop:aspect id = "cardAspect" ref="card">
-		<aop:pointcut expression="execution(* com.jh.s4.transfer.Transfer.get*(String))" id="trans"/>
-		<aop:around method="cardCheck" pointcut-ref="trans"/>
-		</aop:aspect>
-		
-		<aop:aspect id = "cashAspect" ref = "card">	
-			<aop:after method="cash" pointcut="execution(* com.jh.s4.transfer.Transfer.taxi())"/>
-		</aop:aspect>
-		
-	</aop:config>
+	<aop:aspectj-autoproxy ></aop:aspectj-autoproxy>
 	
 </beans>

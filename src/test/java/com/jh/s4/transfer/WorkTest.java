@@ -15,7 +15,7 @@ public class WorkTest extends TestAbstractCase{
 	
 	@Test
 	public void test() {
-		work.goWork();
+		work.goTaxi();
 	}
 
 }
