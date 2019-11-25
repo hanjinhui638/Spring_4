@@ -22,6 +22,7 @@ public class BoardNoticeDAOTest extends TestAbstractCase{
 		boardVO.setContents("test contents");
 		boardVO.setWriter("test writer");
 		int result = boardNoticeDAO.boardWrite(boardVO);
+		//강제 exception 발생시키면 DB에 들어가지 않음 
 		assertEquals(1, result);
 	}
 	
@@ -34,7 +35,6 @@ public class BoardNoticeDAOTest extends TestAbstractCase{
 		
 		assertNull(boardVO);
 	}
-	
 	
 	
 	
