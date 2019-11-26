@@ -27,6 +27,23 @@
 		<beans:property name="order" value = "0"></beans:property>
 	</beans:bean>
 	
+	<!-- <beans:bean class = "com.jh.s4.interceptors.UpdateInterceptor" id= "updateInterceptor"></beans:bean> -->
+	
+	<interceptors>
+		<interceptor>
+			 <!-- 절대경로 -->
+			<mapping path="/qna/*"/>
+			<exclude-mapping path="/qna/qnaList"/>
+			<beans:bean class="com.jh.s4.interceptors.LoginInterceptor"></beans:bean>	
+		</interceptor>
+		<interceptor>
+			<mapping path="/**/*Update"/> 
+			<!-- root밑에 모든 폴더 밑 Update로 끝나는 -->
+			<beans:ref bean="updateInterceptor"/>
+			<!-- annotation or beans -->
+		</interceptor>
+	</interceptors>
+	
 	<context:component-scan base-package="com.jh.s4" />
 	
 	

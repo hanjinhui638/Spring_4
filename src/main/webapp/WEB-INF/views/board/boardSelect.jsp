@@ -48,8 +48,11 @@
 	</div>
 	  
 	  <div>
+	  <c:if test="${member.id eq select.writer}">
 	  	<a href="${board}Update?num=${select.num}" class="btn btn-info">Update</a>
 	 	<a href="${board}Delete?num=${select.num}" class="btn btn-danger">Delete</a>
+	 	</c:if>
+	 	
 		<c:catch>
 			<c:if test="${board eq 'qna'}">
 		 		<a href="${board}Reply?num=${select.num}" class="btn btn-warning">Reply</a>
