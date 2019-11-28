@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,8 +30,16 @@ public class NoticeController {
 	@Inject
 	private BoardNoticeService boardNoticeService;
 	
-	@Value("${notice}")
+	@Value("#{db['notice']}")
 	private String board;
+	
+	//mv.addObject("board", "notice") 역할
+	@ModelAttribute("board")
+	public String getBoard() {
+		return board;
+		
+	}
+	
 	
 	@PostMapping(value = "summerfileDelete")
 	public ModelAndView summerfileDelete(String file, HttpSession session)throws Exception{
@@ -127,7 +136,6 @@ public class NoticeController {
 		//int size = noticeVO.getFiles().size();
 		//mv.addObject("size", size);
 		mv.addObject("update", boardVO);
-		mv.addObject("board", "notice");
 		mv.setViewName("board/boardUpdate");
 		
 		return mv;
@@ -139,8 +147,7 @@ public class NoticeController {
 		
 		BoardVO boardVO2 = boardNoticeService.boardSelect(boardVO);
 		boardVO2.setContents(boardVO2.getContents().replace("\r\n", "<br>"));
-		mv.addObject("board", "notice");
-		mv.addObject("select", boardVO2);
+		//mv.addObject("select", boardVO2);
 		mv.setViewName("board/boardSelect");
 		
 		return mv;
@@ -175,7 +182,6 @@ public class NoticeController {
 	@RequestMapping("noticeWrite")
 	public ModelAndView boardWrite() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("board", "notice");
 		mv.setViewName("board/boardWrite");
 		
 		return mv;
@@ -187,7 +193,6 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
-		mv.addObject("board", board);
 		mv.setViewName("board/boardList");
 		
 		return mv;

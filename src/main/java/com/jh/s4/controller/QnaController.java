@@ -5,7 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +24,14 @@ public class QnaController {
 
 	@Inject
 	private BoardQnaService boardQnaService;
+	
+	@Value("#{db['qna']}")
+	private String board;
+	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return board;
+	}
 	
 	@RequestMapping(value = "qnaReply", method = RequestMethod.POST)
 	public ModelAndView boardReply(BoardVO boardVO) throws Exception {
@@ -42,7 +52,6 @@ public class QnaController {
 	public ModelAndView boardReplyForm(BoardVO boardVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("num", boardVO.getNum());
-		mv.addObject("board", "qna");
 		mv.setViewName("board/boardReply");
 		
 		return mv;
@@ -82,7 +91,6 @@ public class QnaController {
 	public ModelAndView boardUpdate(BoardVO boardVO) throws Exception {
 		BoardVO boardVO2 = boardQnaService.boardSelect(boardVO);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("board", "qna");
 		mv.addObject("update", boardVO2);
 		mv.setViewName("board/boardUpdate");
 		
@@ -93,7 +101,6 @@ public class QnaController {
 	public ModelAndView boardSelect(BoardVO boardVO) throws Exception {
 		BoardVO boardVO2 = boardQnaService.boardSelect(boardVO);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("board", "qna");
 		mv.addObject("select", boardVO2);
 		mv.setViewName("board/boardSelect");
 		
@@ -125,7 +132,6 @@ public class QnaController {
 	@RequestMapping("qnaWrite")
 	public ModelAndView boardWrite() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("board", "qna");
 		mv.setViewName("board/boardWrite");
 		
 		return mv;
@@ -137,7 +143,6 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
-		mv.addObject("board", "qna");
 		mv.setViewName("board/boardList");
 		
 		BoardVO boardVO = new BoardQnaVO();
