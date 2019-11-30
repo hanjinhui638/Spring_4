@@ -25,6 +25,16 @@
 	</repositories>
 	
 	<dependencies>	
+	
+	<!-- jackson-databind return 하는 data를 json으로 만들어줌-->
+	<dependency>
+ 		   <groupId>com.fasterxml.jackson.core</groupId>
+  		  <artifactId>jackson-databind</artifactId>
+  		  <version>2.9.8</version>
+		</dependency>
+	
+	
+	
 	<!-- commons-fileupload -->
 	<dependency>
    		 <groupId>commons-fileupload</groupId>

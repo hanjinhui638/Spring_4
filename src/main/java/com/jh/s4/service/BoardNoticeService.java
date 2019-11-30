@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +32,9 @@ public class BoardNoticeService implements BoardService {
 	private FileSaver fileSaver;
 	@Inject
 	private NoticeFilesDAO noticeFilesDAO;
+	
+	@Value("${notice}")
+	private String board;
 	
 	
 	public boolean summerfileDelete(String file, HttpSession session)throws Exception{
@@ -107,8 +111,8 @@ public class BoardNoticeService implements BoardService {
 	@Override
 	public int boardUpdate(BoardVO boardVO, MultipartFile[] file, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
-		String realPath = session.getServletContext().getRealPath("resources/upload/notice");
-		
+		String realPath = session.getServletContext().getRealPath("resources/upload/"+board);
+		System.out.println(realPath);
 		FilesVO noticeFilesVO = new FilesVO();
 		int result = boardNoticeDAO.boardUpdate(boardVO);
 		
